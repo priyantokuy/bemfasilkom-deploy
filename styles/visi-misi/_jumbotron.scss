@@ -1,0 +1,151 @@
+// Color Pallete
+$oren: #ef4f01;
+
+.jumbotron {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  color: white;
+  border-bottom-left-radius: 50% 25%;
+  background-color: $oren;
+  border-bottom-right-radius: 50% 25%;
+}
+
+.jumbotron__bg {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.jumbotron__img1 {
+  position: absolute;
+  right: 0;
+}
+
+.jumbotron__img2 {
+  position: absolute;
+  left: 2rem;
+  bottom: 0;
+  transform: scale(1.3);
+}
+
+.jumbotron__title-container {
+  z-index: 2;
+}
+
+.jumbotron__icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon__img {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -7%);
+  animation: rotation 10s infinite linear;
+
+  @keyframes rotation {
+    from {
+      transform: translate(-50%, -7%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -7%) rotate(359deg);
+    }
+  }
+}
+
+.icon__title {
+  font-size: 1.2rem;
+}
+
+.icon__title2 {
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-left: 30px;
+}
+
+//! TABLET
+@media (min-width: 640px) {
+  .jumbotron__img1 {
+    right: 27px;
+    transform: scale(1.3);
+    top: 16px;
+  }
+
+  .jumbotron {
+    height: 350px;
+  }
+
+  .jumbotron__icon {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .jumbotron__img2 {
+    left: 3rem;
+    transform: scale(1.8);
+  }
+}
+
+//! 768+
+@media (min-width: 768px) {
+  .jumbotron__img2 {
+    left: 3rem;
+    transform: scale(1.5);
+  }
+
+  .jumbotron {
+    height: 400px;
+  }
+
+  .jumbotron__icon {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+
+  .jumbotron__bg {
+    top: -200px;
+  }
+}
+
+//! DESKTOP
+@media (min-width: 1280px) {
+  .jumbotron__img2 {
+    position: absolute;
+    left: 5rem;
+    transform: scale(2.2);
+  }
+
+  .jumbotron {
+    height: 450px;
+  }
+
+  .jumbotron__icon {
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+  .jumbotron__bg {
+    top: -650px;
+    height: 90rem;
+  }
+}
+
+//! WIDE DESKTOP
+@media (min-width: 1536px) {
+  .jumbotron {
+    max-width: 100rem;
+    margin: 0 auto;
+  }
+
+  .jumbotron__img2 {
+    position: absolute;
+    left: 6rem;
+    transform: scale(2.2);
+  }
+
+  .jumbotron__bg {
+    max-height: 82rem;
+  }
+}

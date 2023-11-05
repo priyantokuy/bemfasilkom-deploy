@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .submenu {
+    @apply text-typedBlue relative after:content-[""] after:h-[3px] after:bg-tangerine after:absolute after:rounded-xl ;
+  }
+  .text-outline{
+    @apply bg-gradient-cust-orange1 bg-clip-text text-transparent ;
+  }
+  .shadow-outline{
+    @apply after:text-3xl after:tracking-wide after:font-bold after:text-white after:drop-shadow-cust-1 after:absolute after:left-0;
+  }
+  .checkbox-div:has(input:checked) {
+    @apply bg-slate-400;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+
+a {
+  text-decoration: none;
+}
+/* .card{
+  align-self: normal;
+}
+.nama{
+  margin-bottom: 5px;
+} */
+.react-tabs__tab {
+  display: inline-block;
+  /* border: 1px solid transparent; */
+  border: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: gray;
+  font-weight: bold;
+  letter-spacing: .04rem;
+} 
+ .react-tabs__tab-list{
+  border:none;
+} 
+.react-tabs__tab--selected{
+  border-color: transparent;
+  color: transparent;
+  background-clip: text;
+  background-color: transparent;
+  background-image: linear-gradient(97deg, #FA6D01 11.69%, #FAB401 118.46%);
+  border-bottom: 2px solid orange;
+}
+.card {
+  border-radius: 15px;
+  background: #FAFAFA;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+ }
+
+ .custom-dot-list-style button{
+  background-color: #FA6D01;
+ }
+ .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background-color: rgb(141, 141, 141);
+ }
+ .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+.carousel-item-gap{
+  padding-left: 10px;
+}
+html.has-scroll-smooth {
+  overflow: hidden; }
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.has-scroll-smooth body {
+  overflow: hidden; }
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh; }
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap; }
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%; }
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0; }
+  .c-scrollbar:hover {
+    transform: scaleX(1.45); }
+  .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+    opacity: 1; }
+  [data-scroll-direction="horizontal"] .c-scrollbar {
+    width: 100%;
+    height: 10px;
+    top: auto;
+    bottom: 0;
+    transform: scaleY(1); }
+    [data-scroll-direction="horizontal"] .c-scrollbar:hover {
+      transform: scaleY(1.3); }
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab; }
+  .has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing; }
+  [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+    right: auto;
+    bottom: 0; }
+.react-tabs__tab:focus{
+  box-shadow: none;
+  border-color: none ;
+  border-bottom: 2px solid orange;
+}
+@media screen and (max-width: 768px) {
+  .react-tabs__tab-list{
+    display: flex;
+    gap: 12px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 20px 0;
+  }
+  .react-tabs__tab-list  .react-tabs__tab {
+    border-radius: 10px;
+    padding: .5rem 2rem;
+    background-color: #EFEFEF;
+    font-size: .8rem;
+    white-space: nowrap;
+  }
+  .react-tabs__tab--selected{
+    border-color: transparent;
+    color: transparent;
+    background-clip: text;
+    background-color: transparent;
+    background-image: linear-gradient(97deg, #FA6D01 11.69%, #FAB401 118.46%);
+    border-bottom: 2px solid orange;
+    border-radius: 0;
+  }
+  
+}
+
+@media screen and (min-height: 670px) {
+  .section-gambar{
+    top: -3rem;
+  }
+  .section-desc{
+    position: relative;
+    top: -6rem;
+  }
+}
+
+
+ 

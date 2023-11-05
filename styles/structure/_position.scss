@@ -1,0 +1,57 @@
+.position {
+  font-size: 24px;
+  font-weight: 100;
+  opacity: 0.5;
+
+  &.active {
+    border-bottom: 5px solid #ef4f01;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    font-size: 26px;
+    font-weight: 900;
+    opacity: 1;
+    padding: 0px 10px 5px 10px;
+    text-align: center;
+  }
+}
+
+.position-wrapper {
+  padding: 0 0 40px 0;
+
+  &.row {
+    margin-left: 0;
+    padding-left: 0;
+
+    .col {
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .position {
+    font-size: 18px;
+    font-weight: 400;
+    color: #183149;
+    opacity: 0.5;
+
+    &.active {
+      font-size: 20px;
+      opacity: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 601px) {
+  .position {
+    font-size: 13px;
+    font-weight: 400;
+    color: #183149;
+    opacity: 0.5;
+
+    &.active {
+      font-size: 13px;
+      opacity: 1;
+    }
+  }
+}

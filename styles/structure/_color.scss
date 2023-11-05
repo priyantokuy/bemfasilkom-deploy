@@ -1,0 +1,23 @@
+.background {
+  &-orange {
+    background-color: $orange;
+  }
+
+  &-nile {
+    background-color: $nile;
+  }
+
+  &-white {
+    background-color: $white;
+  }
+}
+
+.text {
+  &-black {
+    color: $black;
+  }
+
+  &-white {
+    color: $white;
+  }
+}
