@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "web-bem-testing.herokuapp.com"],
+    domains: ["localhost", "bemfasilkom-deploy.vercel.app"],
   },
   typescript: {
     ignoreBuildErrors: true,
