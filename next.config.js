@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "bemfasilkom-deploy.vercel.app"],
+    domains: ["localhost", "https://bebrand.space"],
   },
   typescript: {
     ignoreBuildErrors: true,
