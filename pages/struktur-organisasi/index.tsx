@@ -12,6 +12,7 @@ import {
     NextPage,
   } from "next";
 import { API_URL } from "../../constants";
+import { DocumentHead } from "../../components/DocumentHead";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Pengurus, Proker as Prokers, StrukturOrganisasiPage, Tupoksi } from '../../constants/types';
@@ -156,114 +157,117 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
     },[dispatch])
     
   return (
-    <section className='mt-[13vh] py-3'>
-        <section className='w-full h-fit'>
-            <section className='px-10 flex flex-col items-center justify-center md:flex-row md:justify-between w-full h-fit gap-5'>
-                <div  className='hidden md:block md:relative w-[8rem] h-[8rem] md:top-10  animate-spin-cust '>
-                    <Image src='/vector/vector.svg' width={200} height={200} alt='Kabinet Aerial'/>
-                </div>
-                <div className='text-center'>
-                    <h3 className='text-2xl lg:text-3xl font-bold submenu w-fit'>Struktur Organisasi</h3>
-                    <h4 className='text-lg lg:text-2xl tracking-wide font-black text-outline'>{data.namaKabinet}</h4>
-                </div>
-                <div className='flex justify-center h-[20vh] w- sm:h-[30vh] md:h-[7rem] md:relative md:top-10 lg:right-10'>
-                    <Image src={`${API_URL}${data.logo}`} width={150} height={150} alt='Kabinet Aerial' />
-                </div>
-            </section>
-            <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap px-3 md:px-7 w-full h-fit border-box '>
-                <Image  src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
-                <div className='absolute z-100 -bottom-20 lg:left-3'>
-                    <Image src={'/vector/infinity.png'} width={150} height={150} alt='infinity'></Image>
-                </div>
-            </section>
-        </section>
-        <section className='flex flex-col gap-5 px-3 sm:px-10'>
-            <div className='flex flex-col gap-1'>
-                <h5 className='text-lg leading-none sm:text-xl md:text-2xl lg:text-3xl font-bold submenu w-fit pr-2 border-r-2 border-tangerine h-fit'>Fungsionaris</h5>
-                <h6 className='text-xs sm:text-sm md:text-base md:leading-3 lg:text-2xl font-black text-outline'>BEM FASILKOM 2023</h6>
-            </div>
-            <div className='w-full h-fit overflow-hidden'>
-                <Tabs>
-                    <TabList>
-                            {data.pengurus.map((p,i)=>{
-                                return(
-                               <Tab onClick={()=>setTimeout(()=>tabClicked(),10)} key={i}>{p.divisi}</Tab>
-                                )
-                                
-                            })}
-                            
-                            
-                    </TabList>
-
-                    
-                    <div className='flex flex-col items-center bg-[#EFEFEF] w-full h-fit px-3 py-10 pb-[7rem]'>
-                    {data.pengurus.map((p ,i)=>{
-                        return(
-
-                    <TabPanel key={i}>
-                            <h4 className='text-2xl text-center font-bold text-typedBlue mb-10'>{p.divisi}</h4>
-                            <div ref={refImage} className='flex flex-col min-[550px]:flex-row min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
-                                                                {p.members.map(m=>{return(
-                                <Card key={m.id} nama={m.nama}
-                                angkatan={m.angkatan} 
-                                jabatan={m.jabatan.nama} 
-                                jurusan={m.jurusan.nama}
-                                foto={m.fotoUrl}
-                                linkedin={m.linkedin}/>
-                                )})}
-                               
-                                {/* <Card nama={'Muhammad Fauzan Novriandy sdnsjdn'}/> */}
-                            </div>
-                          
-                            <div className='w-full h-fit flex flex-col lg:mt-10 lg:flex-row'>
-                            {p.tupoksis.length?    
-                                <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
-                                    <div className='w-full h-fit flex flex-col items-center gap-7'>
-                                        <h6 className='text-2xl text-typedBlue font-bold'>Tupoksi</h6>
-                                        <div className='px-5'>
-                                            <ul className='list-disc'>
-                                                {p.tupoksis.map((t,i)=>
-                                                <li key={i} className='lg:text-sm'>{t.Tupoksi}</li>
-                                                )}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                :
-                                null
-                            }
-                               {p.prokers.length ? 
-                                <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
-                                    <div className='w-full h-fit flex flex-col items-center gap-7'>
-                                        <h6 className='text-2xl text-typedBlue font-bold'>Proker</h6>
-                                        <div className='h-fit w-full flex justify-around gap-3 flex-wrap box-border'>
-                                        {prokers.map((prok) => {
-                                        if (prok.divisi_pengurus === p.id) {
-                                            return <Proker key={prok.id} prokerName={prok.nama} />;
-                                        } else {
-                                            return null;
-                                        }
-                                        })}
-                                           
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                                :
-                                null
-                                }
-                            </div>
-                        </TabPanel>
-                        
-                        )
-                    })}
-                        
+    <>
+        <DocumentHead pageTitle="Struktur Organisasi" />
+        <section className='mt-[13vh] py-3'>
+            <section className='w-full h-fit'>
+                <section className='px-10 flex flex-col items-center justify-center md:flex-row md:justify-between w-full h-fit gap-5'>
+                    <div  className='hidden md:block md:relative w-[8rem] h-[8rem] md:top-10  animate-spin-cust '>
+                        <Image src='/vector/vector.svg' width={200} height={200} alt='Kabinet Aerial'/>
                     </div>
-                </Tabs>
-            </div>
+                    <div className='text-center'>
+                        <h3 className='text-2xl lg:text-3xl font-bold submenu w-fit'>Struktur Organisasi</h3>
+                        <h4 className='text-lg lg:text-2xl tracking-wide font-black text-outline'>{data.namaKabinet}</h4>
+                    </div>
+                    <div className='flex justify-center h-[20vh] w- sm:h-[30vh] md:h-[7rem] md:relative md:top-10 lg:right-10'>
+                        <Image src={`${API_URL}${data.logo}`} width={150} height={150} alt='Kabinet Aerial' />
+                    </div>
+                </section>
+                <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap px-3 md:px-7 w-full h-fit border-box '>
+                    <Image  src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
+                    <div className='absolute z-100 -bottom-20 lg:left-3'>
+                        <Image src={'/vector/infinity.png'} width={150} height={150} alt='infinity'></Image>
+                    </div>
+                </section>
+            </section>
+            <section className='flex flex-col gap-5 px-3 sm:px-10'>
+                <div className='flex flex-col gap-1'>
+                    <h5 className='text-lg leading-none sm:text-xl md:text-2xl lg:text-3xl font-bold submenu w-fit pr-2 border-r-2 border-tangerine h-fit'>Fungsionaris</h5>
+                    <h6 className='text-xs sm:text-sm md:text-base md:leading-3 lg:text-2xl font-black text-outline'>BEM FASILKOM 2023</h6>
+                </div>
+                <div className='w-full h-fit overflow-hidden'>
+                    <Tabs>
+                        <TabList>
+                                {data.pengurus.map((p,i)=>{
+                                    return(
+                                <Tab onClick={()=>setTimeout(()=>tabClicked(),10)} key={i}>{p.divisi}</Tab>
+                                    )
+                                    
+                                })}
+                                
+                                
+                        </TabList>
+
+                        
+                        <div className='flex flex-col items-center bg-[#EFEFEF] w-full h-fit px-3 py-10 pb-[7rem]'>
+                        {data.pengurus.map((p ,i)=>{
+                            return(
+
+                        <TabPanel key={i}>
+                                <h4 className='text-2xl text-center font-bold text-typedBlue mb-10'>{p.divisi}</h4>
+                                <div ref={refImage} className='flex flex-col min-[550px]:flex-row min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
+                                                                    {p.members.map(m=>{return(
+                                    <Card key={m.id} nama={m.nama}
+                                    angkatan={m.angkatan} 
+                                    jabatan={m.jabatan.nama} 
+                                    jurusan={m.jurusan.nama}
+                                    foto={m.fotoUrl}
+                                    linkedin={m.linkedin}/>
+                                    )})}
+                                
+                                    {/* <Card nama={'Muhammad Fauzan Novriandy sdnsjdn'}/> */}
+                                </div>
+                            
+                                <div className='w-full h-fit flex flex-col lg:mt-10 lg:flex-row'>
+                                {p.tupoksis.length?    
+                                    <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
+                                        <div className='w-full h-fit flex flex-col items-center gap-7'>
+                                            <h6 className='text-2xl text-typedBlue font-bold'>Tupoksi</h6>
+                                            <div className='px-5'>
+                                                <ul className='list-disc'>
+                                                    {p.tupoksis.map((t,i)=>
+                                                    <li key={i} className='lg:text-sm'>{t.Tupoksi}</li>
+                                                    )}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                                }
+                                {p.prokers.length ? 
+                                    <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
+                                        <div className='w-full h-fit flex flex-col items-center gap-7'>
+                                            <h6 className='text-2xl text-typedBlue font-bold'>Proker</h6>
+                                            <div className='h-fit w-full flex justify-around gap-3 flex-wrap box-border'>
+                                            {prokers.map((prok) => {
+                                            if (prok.divisi_pengurus === p.id) {
+                                                return <Proker key={prok.id} prokerName={prok.nama} />;
+                                            } else {
+                                                return null;
+                                            }
+                                            })}
+                                            
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    :
+                                    null
+                                    }
+                                </div>
+                            </TabPanel>
+                            
+                            )
+                        })}
+                            
+                        </div>
+                    </Tabs>
+                </div>
+            </section>
         </section>
-    </section>
+    </>
   )
 }
 

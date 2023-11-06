@@ -54,10 +54,15 @@ export default function Index({HomepageContent}: {HomepageContent: HomepageConte
         <div className='container-trigger flex flex-col-reverse gap-[10rem] lg:gap-0 lg:flex-row'>
             <article ref={descRef} className=' flex flex-col justify-center lg:justify-around pb-14 w-full lg:w-[60%] box-border'>
                 <article className='flex flex-wrap'>
-                    <p className='text-sm text-justify leading-5'>{tentang_bem_fasilkom}</p>
+                    <p className='text-sm text-justify leading-5'>
+                        {tentang_bem_fasilkom.length > 1400
+                            ? tentang_bem_fasilkom.slice(0, 200) + "..."
+                            : tentang_bem_fasilkom
+                        }
+                    </p>
                 </article>
                 <section className='w-fit mt-10 lg:mt-0 m-auto lg:m-0'>
-                    <ButtonOutline content={'Lihat Selengkapnya'}/>
+                    <ButtonOutline content={'Lihat Selengkapnya'} link={'/tentang-kami'}/>
                 </section>
             </article>
             <aside className=' relative mt-[8rem] lg:mt-0 lg:-top-[4rem] w-full h-fit lg:h-fit lg:w-[40%] flex justify-center lg:justify-end'>

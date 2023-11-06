@@ -106,6 +106,12 @@ export const Navbar = () => {
     dispatch(setStateNavbar({link}))
     dispatch(setStateLink({link}))
   }
+  const handleLogoClicked=(link:string)=>{
+    dispatch(setStateLink({link}))
+    if (navbarShow){
+      dispatch(setStateNavbar({link}))
+    }
+  }
   return (
     <Headroom className="fixed z-[99] min-w-[100%]" style={{
       transition: 'all 1s ease-in-out'
@@ -115,7 +121,7 @@ export const Navbar = () => {
     }}>
           <section className='flex w-[60%] lg:w-[20%]'>
               <Link href="/">
-                  <a onClick={()=>navbarShow?setLogoClicked(true):setLogoClicked(false)} className="flex items-center ">
+                  <a onClick={()=>handleLogoClicked('Homepage')} className="flex items-center ">
                     <Image
                         src={`${pageVisit==='Bisnis-Mitra' ? '/logo/kabinetAerialWhite.svg' : '/logo/kabinetArial.svg'}`}
                         alt="Logo BEM Fasilkom UPN 'Veteran' Jawa Timur"
@@ -173,7 +179,7 @@ export const Navbar = () => {
                 </>
               )}
             </section>
-            <ButtonOutline content={`${pageVisit==='Bisnis-Mitra' ? 'Contact Us' : 'Event'}`} width={'6.3rem'} bismitMode={pageVisit==='Bisnis-Mitra' ? true : false}/>
+            <ButtonOutline content={`${pageVisit==='Bisnis-Mitra' ? 'Contact Us' : 'Event'}`} link={`${pageVisit==='Bisnis-Mitra' ? '/contact-us' : '/event'}`} width={'6.3rem'} bismitMode={pageVisit==='Bisnis-Mitra' ? true : false}/>
           </nav>
           <section className="w-[20%] lg:hidden flex justify-end pr-5 md:pr-8">
             <Hamburger />

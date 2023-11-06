@@ -7,6 +7,7 @@ import Typed from 'typed.js'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from 'next/image'
+import { DocumentHead } from "../../components/DocumentHead";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger)
@@ -64,7 +65,7 @@ export default function Index() {
     const animation ={
       service: gsap.fromTo(refService.current,{autoAlpha:0,x:200},{autoAlpha:1,x:0}),
 	  benefit:gsap.fromTo(refBenefit.current,{autoAlpha:0,x:-200},{autoAlpha:1,x:0}),
-      portofolio:gsap.fromTo(refPortofolio.current,{autoAlpha:0,y:200},{autoAlpha:1,y:0,ease:'power3.out'}),
+      portofolio:gsap.fromTo(refPortofolio.current,{autoAlpha:0,y:100},{autoAlpha:1,y:0,ease:'power3.out'}),
 	  testimonials:gsap.fromTo(refTestimonials.current,{autoAlpha:0,y:200},{autoAlpha:1,y:0,ease:'power3.out'})
     }
 
@@ -92,11 +93,11 @@ export default function Index() {
       animation: animation.portofolio,
       trigger: '.scroll-trigger-portofolio',
       start: 'top center',
-      end: 'bottom 30%',
+      end: 'bottom+=100px top',
       markers: false,
       onLeaveBack:()=>animation.portofolio.reverse(),
-	  onLeave:()=>gsap.to(refPortofolio.current,{autoAlpha:0,y:-200,animationDuration:2}),
-	  onEnterBack:()=>gsap.to(refPortofolio.current,{autoAlpha:1,y:0,ease:'power3.out',animationDuration:2})
+	  onLeave:()=>gsap.to(refPortofolio.current,{autoAlpha:0,y:-200}),
+	  onEnterBack:()=>gsap.to(refPortofolio.current,{autoAlpha:1,y:0,ease:'power3.out'})
     })
     ScrollTrigger.create({
       animation: animation.testimonials,
@@ -109,6 +110,7 @@ export default function Index() {
   },[])
   return (
     <>
+	  <DocumentHead pageTitle="Bisnis Mitra" />
       <section id='hero' className="relative h-[120vh] w-full border-box transition-all duration-500 object-fill bg-[length:100%_100%] bg-hero-pattern">
         <Particles className='particles-js h-full w-full absolute' options={particlesConfig} />
         <div className="header-4-1 absolute top-[20vh] z-100">

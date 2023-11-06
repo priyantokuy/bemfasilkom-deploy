@@ -1,12 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Image from 'next/image'
 import { API_URL } from '../../../constants';
+import { useSelector, useDispatch } from 'react-redux'
+import { setStatePageVisit } from '../../../store/pageVisitSlices'
 interface AboutInterface{
     namaKabinet:string,
     content:string,
     logo:string;
 }
-export default function index(props: AboutInterface) {
+export default function Index(props: AboutInterface) {
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(setStatePageVisit({page:'Berita'}))
+    },[dispatch])
     const {namaKabinet,content,logo}= props
     console.log(namaKabinet)
   return (

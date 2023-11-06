@@ -26,7 +26,13 @@ export default function CardNews({berita}:{berita:DetailBerita}) {
             </section>
             <section className='mt-4 text-justify flex flex-col flex-wrap'>
               <h4 className='text-typedBlue text-sm lg:text-lg font-bold'>{berita.judul}</h4>
-              <p className='text-sm sm:text-md mt-3'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, non dignissimos tempore veniam quisquam iste.</p>
+              <p className='text-sm sm:text-md mt-3'>
+                {/* {Events.deskripsi.length > 200
+                  ? Events.deskripsi.slice(0, 200) + "..."
+                  : Events.deskripsi
+                } */}
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum ratione, magni soluta recusandae quaerat natus sequi voluptates nulla provident impedit deserunt rem molestiae. Iusto, autem!
+              </p>
             </section>
           </section>
         </article>

@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import VisiMisi from '../../components/visi-misi'
 import FilosofiLogo from '../../components/FilosofiLogo'
 import About from '../../components/About/tentang-kami'
+import { DocumentHead } from "../../components/DocumentHead";
 import {
   GetServerSideProps,
   InferGetServerSidePropsType,
@@ -22,13 +23,16 @@ const TentangKami: NextPage<
   
   const {namaKabinet,logo,aboutContent, visi, misi, filosofiLogo}= props
   return (
-    <section className='px-10 relative'>
-        <About namaKabinet={namaKabinet} logo={logo} content={
-          aboutContent
-           } />
-        <VisiMisi visi={visi} misi={misi}/>
-        <FilosofiLogo url={filosofiLogo}/>
-    </section>
+    <>
+      <DocumentHead pageTitle="Tentang Kami" />
+      <section className='px-10 relative'>
+          <About namaKabinet={namaKabinet} logo={logo} content={
+            aboutContent
+            } />
+          <VisiMisi visi={visi} misi={misi}/>
+          <FilosofiLogo url={filosofiLogo}/>
+      </section>
+    </>
   )
 }
 

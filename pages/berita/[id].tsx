@@ -15,27 +15,31 @@ import * as dateFns from "date-fns";
 import { useSelector, useDispatch } from 'react-redux'
 import { setStatePageVisit } from '../../store/pageVisitSlices'
 import Link from "next/link";
+import { useEffect } from "react";
 
 
 const NewsPage: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
   const dispatch = useDispatch()
-  dispatch(setStatePageVisit({page:'Berita'}))
-  const { errorCode, detailBerita,listBerita } = props;
 
+  useEffect(()=>{
+    dispatch(setStatePageVisit({page:'Berita'}))
+  },[dispatch])
+  
+  const { errorCode, detailBerita,listBerita } = props;
   useDarkNavLinks();
   if (errorCode || !detailBerita) {
     return (
       <Error
-        statusCode={errorCode as number}
-        title="Tidak dapat menemukan berita"
+      statusCode={errorCode as number}
+      title="Tidak dapat menemukan berita"
       />
-    );
-  }
-
-  return (
-    <>
+      );
+    }
+    
+    return (
+      <>
       <DocumentHead pageTitle="Berita" />
       <main className={styles.main}>
         <div className="w-fit h-fit flex flex-col  lg:flex-row mt-3">

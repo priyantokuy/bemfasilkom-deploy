@@ -23,7 +23,7 @@ export default function Index({listBerita}: {listBerita: DetailBerita[]}) {
     trigger: '.container-trigger',
     start: 'bottom center',
     end: 'bottom 40%',
-    markers: true,
+    markers: false,
     onEnterBack: ()=> animation.secHide.reverse(),
     onLeaveBack:()=>animation.secEnter.reverse(),
 })
@@ -40,7 +40,7 @@ export default function Index({listBerita}: {listBerita: DetailBerita[]}) {
           : null}
         </article>
         <div className='w-fit m-auto my-5'>
-          <ButtonOutline content='Lihat Selengkapnya' />
+          <ButtonOutline content='Lihat Selengkapnya' link='/berita'/>
         </div>
     </section>
   )
