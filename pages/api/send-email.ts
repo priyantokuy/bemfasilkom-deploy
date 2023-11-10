@@ -25,8 +25,8 @@ export default async function handler(
       const OAuth2 = google.auth.OAuth2;
 
       const oauth2Client = new OAuth2({
-        clientId: "650270545823-l7plhbiusbfcbtgupsndkhcl2gfh7tiu.apps.googleusercontent.com",
-        clientSecret: "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",
+        clientId: process.env.OAUTH2_CLIENT_ID,
+        clientSecret: process.env.OAUTH2_CLIENT_SECRET,
         redirectUri: `/aduan-dan-aspirasi`,
       });
 

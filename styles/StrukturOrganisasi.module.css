@@ -1,0 +1,282 @@
+.cabinate-container {
+  margin-top: 50px;
+  margin-bottom: 1rem;
+}
+
+.cabinate-name {
+  position: relative;
+  color: #183149;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.cabinate-name::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  border-bottom: 1px solid #183149;
+  width: 30px;
+  height: 1px;
+}
+
+.member-list-container {
+  padding: 30px 0;
+  background-color: #f5f5f5;
+}
+
+@media screen and (min-width: 375px) {
+  .cabinate-name {
+    font-size: 1.4rem;
+  }
+  .cabinate-name::before {
+    width: 50px;
+  }
+}
+@media screen and (min-width: 640px) {
+  .cabinate-name {
+    font-size: 1.8rem;
+  }
+  .cabinate-name::before {
+    width: 70px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .cabinate-name {
+    font-size: 2rem;
+  }
+  .cabinate-name::before {
+    width: 70px;
+  }
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 20px;
+  height: 300px;
+  width: 200px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.member-cards {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: grid;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  height: 100%;
+  overflow: hidden;
+  padding: 50px;
+  row-gap: 20px;
+  grid-template-columns: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 545px) {
+  .member-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 860px) {
+  .member-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.card-image {
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  height: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-image::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #ffffff;
+  padding: 18px;
+  border-radius: 0 0 20px 20px;
+  padding-top: 10px;
+}
+
+.member-instagram {
+  color: #555;
+}
+.member-instagram:hover {
+  text-decoration: underline;
+}
+
+.member-card-info {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+.member-position {
+  font-size: 0.8rem;
+  display: block;
+}
+
+.member-name {
+  font-size: 1rem;
+  margin: 10px;
+  font-weight: 900;
+  color: #000;
+}
+
+.background-orange {
+  background-color: #ef4f01;
+}
+.background-nile {
+  background-color: #183149;
+}
+.background-white {
+  background-color: #ffffff;
+}
+
+.text-black {
+  color: #000000;
+}
+.text-white {
+  color: #ffffff;
+}
+
+.content-container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.jumbotron {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  color: white;
+  border-bottom-left-radius: 50% 25%;
+  background-color: #ef4f01;
+  border-bottom-right-radius: 50% 25%;
+}
+
+.jumbotron-bg {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.structural-diagram {
+  width: 90%;
+  max-width: 700px;
+}
+
+.jumbotron-content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.jumbotron__img1 {
+  position: absolute;
+  right: 0;
+}
+
+.jumbotron__img2 {
+  position: absolute;
+  left: 2rem;
+  bottom: 0px;
+  transform: scale(1.3);
+}
+
+@media screen and (min-width: 640px) {
+  .structural-diagram {
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .jumbotron {
+    height: 500px;
+  }
+  .structural-diagram {
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .jumbotron {
+    height: 600px;
+  }
+}
+@media screen and (min-width: 1270px) {
+  .structural-diagram {
+    width: 60%;
+  }
+}
+.position {
+  font-size: 24px;
+  font-weight: 100;
+  opacity: 0.5;
+}
+.position.active {
+  border-bottom: 5px solid #ef4f01;
+  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 20%;
+  font-size: 26px;
+  font-weight: 900;
+  opacity: 1;
+  padding: 0px 10px 5px 10px;
+  text-align: center;
+}
+
+.position-wrapper {
+  padding: 0 0 40px 0;
+}
+.position-wrapper.row {
+  margin-left: 0;
+  padding-left: 0;
+}
+.position-wrapper.row .col {
+  margin: 0 10px 0 0;
+}
+
+@media only screen and (max-width: 992px) {
+  .position {
+    font-size: 18px;
+    font-weight: 400;
+    color: #183149;
+    opacity: 0.5;
+  }
+  .position.active {
+    font-size: 20px;
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 601px) {
+  .position {
+    font-size: 13px;
+    font-weight: 400;
+    color: #183149;
+    opacity: 0.5;
+  }
+  .position.active {
+    font-size: 13px;
+    opacity: 1;
+  }
+}/*# sourceMappingURL=StrukturOrganisasi.module.css.map */

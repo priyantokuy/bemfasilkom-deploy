@@ -78,9 +78,19 @@ export const Navbar = () => {
   const linkClicked = useSelector((state:linkClickedSliceType) => state.linkClickedSlice.value)
   const pageVisit = useSelector((state:pageVisitSliceType) => state.pageVisitSlice.value)
 
+  const handleParentMenuArrowExist=()=>{
+    let lengthMenuArrowExist = 0
+    const menuArrowExist = navLinks.forEach((menu)=>{
+      if(menu.hasOwnProperty('links')){
+        lengthMenuArrowExist+=1
+      }
+    })
+    return lengthMenuArrowExist
+  }
+
   const [scrollY, setScrollY] = useState(0);
-  const [logoClicked,setLogoClicked] = useState(false)
   const [submenuVisible, setSubmenuVisible] = useState(new Array(navLinks.length).fill(false));
+  const [arrowMenuClicked, setArrowMenuClicked] = useState(new Array(handleParentMenuArrowExist()).fill(false));
 
   const toggleSubmenu = (index:number) => {
     // Toggle the submenu visibility for the specified index
@@ -112,6 +122,7 @@ export const Navbar = () => {
       dispatch(setStateNavbar({link}))
     }
   }
+  
   return (
     <Headroom className="fixed z-[99] min-w-[100%]" style={{
       transition: 'all 1s ease-in-out'
@@ -149,10 +160,17 @@ export const Navbar = () => {
             <section className={`flex flex-col lg:flex-row justify-around  ${pageVisit==='Bisnis-Mitra'? 'lg:px-16 lg:items-center' : null } w-fit max-h-[80%] lg:max-h-none lg:w-[70%] h-[60%] lg:h-fit `}>
               {pageVisit != 'Bisnis-Mitra'? 
                 navLinks.map((menu:any,i:number) => menu.links? (
-                  <section key={`menu-${i}`} className="group relative z-[100] cursor-pointer box-border h-fit" onClick={() => toggleSubmenu(i)} >
+                  <section key={`menu-${i}`} className="group relative z-[100] cursor-pointer box-border h-fit" onClick={() => {
+                    toggleSubmenu(i)
+                    setArrowMenuClicked((prevArrowMenuClicked) => {
+                      const updatedArrowMenuClicked = [...prevArrowMenuClicked];
+                      updatedArrowMenuClicked[i] = !updatedArrowMenuClicked[i];
+                      return updatedArrowMenuClicked;
+                    });
+                    }} >
                     <div className="lg:group-hover:border-b-2 border-b-black flex justify-between w-fit lg:px-3">
                         <p className={`${linkClicked===menu.text?'text-typedBlue font-bold':'text-black'}`}>{menu.text}</p>
-                        <Image className='group-hover:rotate-180 transition-transform duration-400' src={'/icons/caret.svg'} width={10} height={10} alt="Profile"></Image>
+                        <Image className={`lg:group-hover:rotate-180 transition-all duration-400 ${arrowMenuClicked[i] ? 'rotate-180 lg:rotate-0' : ''}`} src={'/icons/caret.svg'} width={10} height={10} alt="Profile"></Image>
                     </div>
                     <ul className={`mt-2 lg:mt-0 ${submenuVisible[i] ? "flex flex-col gap-4 h-fit py-2" : "hidden"} lg:py-0 lg:block lg:absolute group lg:invisible lg:group-hover:visible w-[200px] lg:shadow lg:shadow-slate-400 bg-white  overflow-y-auto  min-h-[fit] max-h-[8rem] rounded-md`}>
                     {menu.links.map((subMenu:NavLink,subIndex:number)=>(
@@ -168,7 +186,7 @@ export const Navbar = () => {
                 )
                 :(
                   <section key={`menu-${i}`}>
-                    <Link href={menu.link}><a onClick={()=>handleClickedNavbar(menu.text)} className={`${linkClicked===menu.text?'text-typedBlue font-bold':'text-black'} hover:border-b-2 border-b-black w-fit`}>{menu.text}</a></Link>
+                    <Link href={menu.link}><a onClick={()=>handleClickedNavbar(menu.text)} className={`${linkClicked===menu.text?'text-typedBlue font-bold':'text-black'} lg:hover:border-b-2 border-b-black w-fit`}>{menu.text}</a></Link>
                   </section>
                 ))
               : (
@@ -179,7 +197,7 @@ export const Navbar = () => {
                 </>
               )}
             </section>
-            <ButtonOutline content={`${pageVisit==='Bisnis-Mitra' ? 'Contact Us' : 'Event'}`} link={`${pageVisit==='Bisnis-Mitra' ? '/contact-us' : '/event'}`} width={'6.3rem'} bismitMode={pageVisit==='Bisnis-Mitra' ? true : false}/>
+            <ButtonOutline content={`${pageVisit==='Bisnis-Mitra' ? 'Contact Us' : 'Event'}`} link={`${pageVisit==='Bisnis-Mitra' ? 'https://bit.ly/contact-bismit' : '/event'}`} width={'6.3rem'} bismitMode={pageVisit==='Bisnis-Mitra' ? true : false}/>
           </nav>
           <section className="w-[20%] lg:hidden flex justify-end pr-5 md:pr-8">
             <Hamburger />

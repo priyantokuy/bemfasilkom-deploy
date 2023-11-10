@@ -20,12 +20,12 @@ const StatusAduanPage: NextPage<
   const dispatch = useDispatch()
   dispatch(setStatePageVisit({page:'status-aduan'}))
   const { columns,session } = props;
-  console.log(session)
   const router = useRouter()
   const [status,setStatus]= useState(0)
+  const [allAduans,setAllAduans]= useState(columns)
   useEffect(()=>{
     if(!session){
-      router.push('/aduan-dan-aspirasi')
+      router.push('/')
     }
   },[])
   const initialLanesOffset: Record<number, number> = {};
@@ -41,7 +41,7 @@ const StatusAduanPage: NextPage<
   function listAduanReducer(
     prevState: typeof columns,
     payload: {
-      newAduans: { id: number; title: string; description: string }[];
+      newAduans: { id: number; title: string; description: string, pesan:string,tipe:string,showDetail:boolean }[];
       laneId: number;
     }
   ): typeof columns {
@@ -69,6 +69,36 @@ const StatusAduanPage: NextPage<
     offsets.current = currentOffsets;
 
     return prevStateClone;
+  }
+
+  const [show,setShowDetail]=useState(false);
+  const showDetail = (id:number,status:number)=>{
+
+    const updatedAllAduans = { ...allAduans };
+      
+    const foundedCard:any = allAduans.lanes[status].cards.findIndex((card)=>
+      card.id === id
+    )
+
+   
+      const updatedCard = {
+      ...updatedAllAduans.lanes[status].cards[foundedCard],
+      showDetail: !updatedAllAduans.lanes[status].cards[foundedCard].showDetail,
+    
+      }
+
+      updatedAllAduans.lanes[status].cards[foundedCard] = updatedCard;
+
+      // Update the state with the modified allAduans object
+      setAllAduans(updatedAllAduans);
+
+
+  }
+
+  
+
+  const back = () =>{
+      router.push('/aduan-dan-aspirasi')
   }
 
 
@@ -121,21 +151,30 @@ const StatusAduanPage: NextPage<
         </div>
         <div className="min-w-[360px] ">
           <div className="w-full h-fit border-b-2 shadow shadow-gray-400 border-[#FEAB6C]">
-            <ul className="w-full h-full text-center  flex text-[12px] justify-around  py-2">
-              <li className={`text-[#094379] w-[calc(100%/3)]  text-[1.3em] sm:text-[1.5em] md:text-[1.6em]  hover:font-bold cursor-pointer`} onClick={()=>setStatus(0)}><a className={` ${status === 0 ? 'font-bold  text-[#FEAB6C]':null}`}>Belum Dikerjakan</a></li>
-              <li className="text-[#094379] w-[calc(100%/3)]  hover:text-[#FEAB6C] text-[1.3em] sm:text-[1.5em] md:text-[1.6em] active:font-bold hover:font-bold cursor-pointer" onClick={()=>setStatus(1)}><a className={` ${status === 1 ? 'font-bold  text-[#FEAB6C]':null}`}>Dalam Pengerjaan</a></li>
-              <li className="text-[#094379] w-[calc(100%/3)]  hover:text-[#FEAB6C] text-[1.3em] sm:text-[1.5em] md:text-[1.6em] active:font-bold hover:font-bold cursor-pointer" onClick={()=>setStatus(2)}><a className={` ${status === 2 ? 'font-bold  text-[#FEAB6C]':null}`}>Selesai</a></li>
+            <ul className="w-full h-full text-center  flex text-[12px] justify-evenly  py-2">
+              <li className={`text-[#094379] w-[calc(100%/3)]  text-[1.3em] sm:text-[1.5em] md:text-[1.6em]  hover:font-bold cursor-pointer`} onClick={()=>setStatus(0)}><a className={` ${status === 0 ? 'font-bold  text-[#FEAB6C]':null}`}>Dalam Antrian</a></li>
+              <li className="text-[#094379] w-[calc(100%/3)]  hover:text-[#FEAB6C] text-[1.3em] sm:text-[1.5em] md:text-[1.6em] active:font-bold hover:font-bold cursor-pointer" onClick={()=>setStatus(1)}><a className={` ${status === 1 ? 'font-bold  text-[#FEAB6C]':null}`}>Dilaporkan</a></li>
             </ul>
           </div>
-          <div className="w-full h-[555px] pt-10 pb-5 overflow-y-scroll lg:grid lg:grid-cols-3 lg:grid-rows-auto">
+          <div className="w-full h-[555px] pt-10 pb-5 overflow-y-scroll lg:grid lg:grid-cols-3 lg:grid-rows-auto gap-2">
             {
               
-                   columns.lanes[status].cards.map((aduan) => {
+                   allAduans.lanes[status].cards.map((aduan) => {
                     return(
                     <article key={aduan.id} className="w-[90%] mb-5 lg:mb-0 border-2 border-[#FEAB6C] h-fit p-2 rounded-[10px] mx-auto hover:bg-[#FEAB6C] hover:border-none transition-all hover:bg-opacity-[25%] ">
-                    <h1 className="text-[#094379] font-semibold text-[19px] sm:text-[24px] lg:text-[24px]">{`${aduan.title}`}</h1>
-                    <p className="text-[15px] sm:text-[19px] text-gray-500">{aduan.description}</p>
+                    <h1 className="text-[#094379] font-semibold text-[19px] sm:text-[24px] lg:text-[18px]">{`${aduan.title}`}</h1>
+                    <p className="text-[15px] sm:text-[13px] text-gray-500">{aduan.description}</p>
+                    <p className="text-gray-800 font-semibold text-[0.9em]">Tipe : {aduan.tipe}</p>
+                    <button className="underline text-[#FEAB6C] text-[0.9em] mt-1" onClick={()=>showDetail(aduan.id,status)}>Tampilkan Isi {aduan.tipe}</button>
+                    {aduan.showDetail?
+                    <div className="w-full h-fit mt-2 bg-[#FEAB6C] rounded-[10px] p-2 opacity-[0.8]">
+                    <p>{aduan.pesan}</p>
+                    </div>
+                     :
+                     null
+                    }
                    </article>
+                  
                     )
                   })
                
@@ -147,7 +186,7 @@ const StatusAduanPage: NextPage<
           <button onClick={()=>signOut({
                 callbackUrl: `/aduan-dan-aspirasi`,
               })} className="h-fit w-fit rounded-full border border-slate-200 text-white bg-red-600 p-2 px-5 shadow shadow-gray-500 hover:bg-white hover:border-red-600 hover:border-2 hover:font-bold hover:scale-[1.02] hover:text-red-600  mx-auto block ">Log-Out</button>
-
+         <button onClick={()=>back()} className='mx-auto block border-2 border-[#FEAB6C] rounded-[10px] py-2 px-5 mt-5 hover:scale-[1.1] transition-all' >Kembali</button>
         </div>
       </div>
       }
@@ -174,6 +213,9 @@ type ServerSideData = {
         id: number;
         title: string;
         description: string;
+        pesan:string;
+        tipe:string;
+        showDetail:boolean;
       }[];
     }[];
   };
@@ -184,7 +226,6 @@ type ServerSideData = {
 export const getServerSideProps: GetServerSideProps<ServerSideData> =
   async (context) => {
     const session = await getSession(context);
-    console.log('session = ',session)
     let listStatusAduan = (await (
       await fetch(`${API_URL}/status-aduans`)
     ).json()) as StatusAduan[];
@@ -209,6 +250,9 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
               return {
                 id: aduan.id,
                 title: `${aduan.tipe} dari ${aduan.nama}`,
+                pesan:aduan.pesan,
+                tipe:aduan.tipe,
+                showDetail:false,
                 description: dateFns.format(
                   new Date(aduan.created_at),
                   "d MMMM yyyy - HH:mm"

@@ -7,7 +7,6 @@ import { FormEventHandler, useState, useEffect } from "react";
 import styles from "../styles/AduanDanAspirasi.module.scss";
 import { signIn, signOut } from "next-auth/client";
 import { API_URL } from "../constants";
-import { useDarkNavLinks } from "../hooks/useDarkNavLinks";
 import Head from "next/head";
 import { DocumentHead } from "../components/DocumentHead";
 import { getSession } from "next-auth/client";
@@ -22,7 +21,6 @@ const AduanDanAspirasi: NextPage<
   const dispatch = useDispatch()
   
   const { session, listJurusan } = props;
-  useDarkNavLinks();
   const kodeJurusanFromNpm = session?.user?.email?.slice(2, 5) ?? "";
   const selectedJurusanFromKode =
   kodeJurusanFromNpm === "081"
@@ -31,6 +29,8 @@ const AduanDanAspirasi: NextPage<
   ? "2"
   : kodeJurusanFromNpm === "083"
   ? "3"
+  : kodeJurusanFromNpm === "084"
+  ? "4"
   : "";
   
   const [nama, setNama] = useState(session?.user?.name ?? "");

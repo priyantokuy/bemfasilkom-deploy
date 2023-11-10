@@ -11,8 +11,8 @@ export default function ButtonOutline({content,link,width,bismitMode}:buttonProp
 
   return (
     <>
-        <div className={`${bismitMode? 'bg-transparent' : 'bg-red-600 bg-gradient-cust-orange2 p-[.1rem]'} lg:flex group rounded-[10px] w-fit  lg:m-auto `}>
-            <a href={link} className={`group from-[#FA6D01] to-[#FA870199] via-yellow-500 relative overflow-hidden md:w-full ${width!=''? width :' lg:w-[13rem]'} flex justify-center py-[.35rem] font-medium 
+        <div className={`${bismitMode? 'bg-transparent' : ' bg-red-600 bg-gradient-cust-orange2 p-[.1rem]'} lg:flex group rounded-[10px] w-fit  lg:m-auto `}>
+            <a href={link} className={`group from-[#FA6D01] to-[#FA870199] via-yellow-500 px-2 relative overflow-hidden md:w-full ${width!=''? width :' lg:w-[13rem]'} flex justify-center py-[.35rem] font-medium 
                         text-sm rounded-[9px]  ${bismitMode? 'bg-transparent group-hover:bg-gradient-to-r outline outline-orange-300 py-[.6rem]' : 'bg-white group-hover:bg-gradient-to-r'} cursor-pointer`}>
                 <p className={`pr-4 lg:pr-2 lg:pl-2  pl-3  ${bismitMode? 'lg:text-white text-base' : 'text-black text-sm'}`}>{content}</p>
                 <div>

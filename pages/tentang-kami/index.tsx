@@ -60,7 +60,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> = async (
         aboutContent:aboutContent.content,
         visi:visi.teks,
         misi:misi,
-        filosofiLogo:filosofiLogo.url.formats.medium.url
+        filosofiLogo:filosofiLogo.url.url
       }
     }
 

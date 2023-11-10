@@ -9,7 +9,6 @@ import { Event } from "../../constants/types";
 import { API_URL } from "../../constants";
 import Link from "next/link";
 import Image from 'next/image'
-import { useDarkNavLinks } from "../../hooks/useDarkNavLinks";
 import * as dateFns from "date-fns";
 import { DocumentHead } from "../../components/DocumentHead";
 import { useDispatch } from 'react-redux'
@@ -50,10 +49,9 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
               <div ref={refSection} className='w-full flex justify-evenly flex-wrap gap-10 '>
                 {EventsList.map((Events, idx) => {
                   return (
-                    <Link key={idx} href={Events.direct_link}>
-                      <a className='group card hover:translate-y-[-10px] transition-all overflow-hidden cursor-pointer bg-gradient-cust-orange2 hover:bg-none rounded-md border-2 bg-pastel pb-4 box-border drop-shadow p-[.1rem] w-fit min-[550px]:w-[80%] sm:max-w-none sm:w-[45%] lg:w-fit'>
+                      <a key={idx} href={Events.direct_link} target='_blank' rel="noreferrer" className='group card hover:translate-y-[-10px] transition-all overflow-hidden cursor-pointer bg-gradient-cust-orange2 hover:bg-none rounded-md border-2 bg-pastel pb-4 box-border drop-shadow p-[.1rem] w-fit min-[550px]:w-[80%] sm:max-w-none sm:w-[45%] lg:w-fit'>
                         <article className='w-fit lg:w-[20rem] flex flex-col flex-wrap lg:justify-center '>
-                          <Image className='rounded-t-xl object-cover' width={300} height={180} src={API_URL + Events.event_image.formats.thumbnail.url} alt="Events" />
+                          <Image className='rounded-t-xl object-cover' width={300} height={180} src={API_URL + Events.event_image.url} alt="Events" />
                           <section className='px-2 py-2 flex flex-col gap-2'>
                             <h3 className='text-[1.2em] text-typedBlue font-bold text-center'>{Events.name}</h3>
                             <div className="">
@@ -79,7 +77,6 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                           </p>
                         </article>
                       </a>
-                    </Link>
                   );
                 })}
               </div>
@@ -130,10 +127,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
       ).json(),
       await (await fetch(`${API_URL}/projects/count`)).json(),
     ]);
-
-    // di api projects sama dengan event
-
-    console.log(EventsList)
 
     return {
       props: {

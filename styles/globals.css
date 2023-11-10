@@ -22,6 +22,9 @@
   .checkbox-div:has(input:checked) {
     @apply bg-slate-400;
   }
+  .typed-cursor{
+    @apply text-tangerine
+  }
 }
 
 * {
@@ -84,10 +87,15 @@ a {
  }
 
  .custom-dot-list-style button{
-  background-color: #FA6D01;
+  background-color: rgb(141, 141, 141);
+
+ }
+ .react-multi-carousel-dot{
+  border: none;
  }
  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
-  background-color: rgb(141, 141, 141);
+  background-color: #FA6D01;
+  
  }
  .react-multi-carousel-list {
   padding: 0rem 0 2rem 0;

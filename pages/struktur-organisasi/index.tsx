@@ -21,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger)
 const StrukturOrganisasi: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
+
     const {namaKabinet,logo,strukturOrganisasi,pengurus,prokers,tupoksis} =props
 
 const groupingData = (key:string)=>{
@@ -163,18 +164,18 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
             <section className='w-full h-fit'>
                 <section className='px-10 flex flex-col items-center justify-center md:flex-row md:justify-between w-full h-fit gap-5'>
                     <div  className='hidden md:block md:relative w-[8rem] h-[8rem] md:top-10  animate-spin-cust '>
-                        <Image src='/vector/vector.svg' width={200} height={200} alt='Kabinet Aerial'/>
+                        <img src='/vector/vector.svg' width={200} height={200} alt='Kabinet Aerial'/>
                     </div>
                     <div className='text-center'>
                         <h3 className='text-2xl lg:text-3xl font-bold submenu w-fit'>Struktur Organisasi</h3>
                         <h4 className='text-lg lg:text-2xl tracking-wide font-black text-outline'>{data.namaKabinet}</h4>
                     </div>
                     <div className='flex justify-center h-[20vh] w- sm:h-[30vh] md:h-[7rem] md:relative md:top-10 lg:right-10'>
-                        <Image src={`${API_URL}${data.logo}`} width={150} height={150} alt='Kabinet Aerial' />
+                        <img src={`${API_URL}${data.logo}`} width={150} height={150} alt='Kabinet Aerial' />
                     </div>
                 </section>
                 <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap px-3 md:px-7 w-full h-fit border-box '>
-                    <Image  src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
+                    <img  src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
                     <div className='absolute z-100 -bottom-20 lg:left-3'>
                         <Image src={'/vector/infinity.png'} width={150} height={150} alt='infinity'></Image>
                     </div>
@@ -205,7 +206,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
 
                         <TabPanel key={i}>
                                 <h4 className='text-2xl text-center font-bold text-typedBlue mb-10'>{p.divisi}</h4>
-                                <div ref={refImage} className='flex flex-col min-[550px]:flex-row min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
+                                <div ref={refImage} className='flex flex-col  min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
                                                                     {p.members.map(m=>{return(
                                     <Card key={m.id} nama={m.nama}
                                     angkatan={m.angkatan} 
@@ -284,22 +285,38 @@ interface ServerSideData{
 }
 export const getServerSideProps: GetServerSideProps<ServerSideData> = async (
   ) => {
-  const namaKabinet = await (await fetch(`${API_URL}/nama-kabinet`)).json();
-  const logo = await (await fetch(`${API_URL}/logo`)).json();
-  const strukturOrganisasi = await (await fetch(`${API_URL}/bagan`)).json();
-  const pengurus = await (await fetch(`${API_URL}/penguruses`)).json();
-  const prokers = await (await fetch(`${API_URL}/kategori-penguruses`)).json();
-
-  return{
-    props:{
-        namaKabinet:namaKabinet.nama,
-        logo:logo.logo.url,
-        strukturOrganisasi:strukturOrganisasi.bagan.url,
-        pengurus:pengurus,
-        prokers:prokers.filter((p:any)=>p.prokers.length ).map((m:any)=>m.prokers)[0],
-        tupoksis:prokers.filter((t:any)=>t.tupoksis.length ).map((m:any)=>m.tupoksis)[0]
+    try {
+      const namaKabinet = await (await fetch(`${API_URL}/nama-kabinet`)).json();
+      const logo = await (await fetch(`${API_URL}/logo`)).json();
+      const strukturOrganisasi = await (await fetch(`${API_URL}/bagan`)).json();
+      const pengurus = await (await fetch(`${API_URL}/penguruses`)).json();
+      const kategoriProkerResponse = await (await fetch(`${API_URL}/kategori-penguruses`)).json();
+  
+      const prokers = kategoriProkerResponse?.prokers?.length
+        ? kategoriProkerResponse.prokers[0]
+        : [];
+  
+      const tupoksis = kategoriProkerResponse?.tupoksis?.length
+        ? kategoriProkerResponse.tupoksis[0]
+        : [];
+  
+      return {
+        props: {
+          namaKabinet: namaKabinet?.nama || '',
+          logo: logo?.logo?.url || '',
+          strukturOrganisasi: strukturOrganisasi?.bagan?.url || '',
+          pengurus: pengurus || [],
+          prokers: prokers || [],
+          tupoksis: tupoksis || [],
+        },
+      };
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return {
+        notFound: true,
+      };
     }
-  }
+
 
   }
 

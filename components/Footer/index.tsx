@@ -19,13 +19,13 @@ export const Footer = () => {
             <section className=" w-full h-[60vh] bg-footer-cover-transparent flex justify-center items-center">
               <div className='flex flex-col items-center gap-5'>
                 <p className="text-white text-[1.2em] text-center">Grow Your Business Faster Than Ever Before</p>
-                <Link href="#">
-                  <a className='hover:scale-[1.1] duration-300 w-fit bg-white text-sky-500 py-3 px-6 rounded-xl'>Contact Us</a>
-                </Link>
+                <Link href="https://bit.ly/contact-bismit">
+                  <a className='hover:scale-[1.1] duration-300 w-fit bg-white text-tangerine py-3 px-6 rounded-xl'>Contact Us</a>
+                </Link> 
               </div>
             </section>
             <section className={`h-[10vh] w-full bg-orange-500 flex items-center justify-center`}>
-              <p className="text-white text-[.7em] sm:text-[.9em] text-center">Copyright © 2023, Bidang Penelitian dan Pengembangan BEM Fasillkom UPNVJT</p>
+              <p className="text-white text-[.7em] sm:text-[.9em] text-center">Copyright © 2023, Bisnis Mitra BEM Fasillkom UPNVJT</p>
             </section>
           </section>
         </>
@@ -59,22 +59,24 @@ export const Footer = () => {
             <article className="w-full flex flex-col items-center mt-10 mb-5 lg:items-start lg:mb-0 lg:mt-0 lg:w-[25%]">
               <h5 className="text-2xl font-black">Follow Us!</h5>
               <div className="mt-5 flex flex-col gap-3">
-                <a className="group flex items-center gap-4" href="#">
+                <a className="group flex items-center gap-4" href="https://instagram.com/bemfasilkom.upnjatim" target='_blank' rel="noreferrer">
                   <Image className='group-hover:animate-bounce' src={'/icons/VectorInstagram.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
                   <p className="group-hover:text-typedBlue">@bemfasilkom.upnjatim</p>
                 </a>
-                <a className="group flex items-center gap-4" href="#">
+                <a className="group flex items-center gap-4" href="https://www.linkedin.com/company/bem-fakultas-ilmu-komputer-upn-veteran-jawa-timur/" target='_blank' rel="noreferrer">
                   <Image className='group-hover:animate-bounce' src={'/icons/vectorLinkedin.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
-                  <p className="group-hover:text-typedBlue">@bemfasilkom.upnjatim</p>
-                </a>
-                <a className="group flex items-center gap-4" href="#">
-                  <Image className='group-hover:animate-bounce' src={'/icons/VectorTiktok.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
                   <p className="group-hover:text-typedBlue">@bemfasilkom_upnvjt</p>
                 </a>
-                <a className="group flex items-center gap-4" href="#">
-                  <Image className='group-hover:animate-bounce' src={'/icons/vectorEmail.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
-                  <p className="group-hover:text-typedBlue">bemfasilkomupnvjt@gmail.com</p>
-                </a>
+                <a className="group flex items-center gap-4" href="https://www.tiktok.com/@bemfasilkom_upnvjt" target='_blank' rel="noreferrer">
+                  <Image className='group-hover:animate-bounce' src={'/icons/VectorTiktok.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
+                  <p className="group-hover:text-typedBlue">@bemfasilkom_upnvjt</p>
+                </a>  
+                <Link href="mailto:bem.fasilkom@upnjatim.ac.id">
+                  <a className="group flex items-center gap-4" >
+                    <Image className='group-hover:animate-bounce' src={'/icons/vectorEmail.svg'} width={20} height={40} alt={'UPN "Veteran" Jawa Timur '}/>
+                    <p className="group-hover:text-typedBlue">bem.fasilkom@upnjatim.ac.id</p>
+                  </a>
+                </Link>
               </div>
 
             </article>

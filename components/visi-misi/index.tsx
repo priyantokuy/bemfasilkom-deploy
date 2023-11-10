@@ -47,7 +47,6 @@ export default function Index(props:VisiMisiPage) {
 
     },[])
     const {visi,misi} = props
-    console.log(misi)
   return (
     <section className='flex flex-col justify-center gap-10 lg:gap-16 h-fit md:px-8 lg:h-[100vh] lg:w-full box-border'>
         <article ref={visiSectionRef} className='flex flex-col md:flex-row items-center gap-10'>

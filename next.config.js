@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "web-bem-testing.herokuapp.com"],
+    domains: ["localhost", "http://localhost:3000"],
   },
   typescript: {
     ignoreBuildErrors: true,

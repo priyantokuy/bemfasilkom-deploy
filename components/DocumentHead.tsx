@@ -10,7 +10,7 @@ export const DocumentHead = ({ pageTitle }: Props) => {
     <Head>
       <link
         rel="shortcut icon"
-        href="/bem-fasilkom-logo.png"
+        href="/assets/image/logo_bismit_small.png"
         type="image/x-icon"
       />
       <title>

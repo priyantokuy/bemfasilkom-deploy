@@ -13,7 +13,7 @@ export default function Hamburger() {
     const dispatch = useDispatch()
     
   return (
-    <section onClick={()=>dispatch(setStateNavbar())} className={`relative box-border rounded-md hover:bg-slate-400 cursor-pointer ${!navbarShow? 'bg-[rgb(148 163 184)]':'bg-transparent'}`}>
+    <section onClick={()=>dispatch(setStateNavbar(''))} className={`relative box-border rounded-md hover:bg-slate-400 cursor-pointer ${!navbarShow? 'bg-[rgb(148 163 184)]':'bg-transparent'}`}>
         <input className='cursor-pointer absolute  w-full h-full opacity-0 pointer-events-auto' type="checkbox"/>
         <div className='cursor-pointer flex w-fit h-full  lg:hidden rounded-md p-1'>
             <div className='w-full h-full'>

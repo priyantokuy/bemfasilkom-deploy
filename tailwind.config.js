@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} **/
-const plugin = require('tailwindcss/plugin')
-
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -64,8 +62,10 @@ module.exports = {
         wiggle: 'wiggle 3s infinite',
         custom: 'custom-animation 3s infinite',
         'spin-cust' : 'spin 10s linear infinite',
-      }
+      },
     },
   },
-  plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 }

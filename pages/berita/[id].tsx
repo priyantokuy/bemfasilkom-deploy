@@ -8,11 +8,9 @@ import styles from "../../styles/NewsDetail.module.scss";
 import Error from "next/error";
 import ReactMarkdown from "react-markdown";
 import { API_URL } from "../../constants";
-import { useDarkNavLinks } from "../../hooks/useDarkNavLinks";
 import { DocumentHead } from "../../components/DocumentHead";
 import * as dateFns from "date-fns";
-
-import { useSelector, useDispatch } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import { setStatePageVisit } from '../../store/pageVisitSlices'
 import Link from "next/link";
 import { useEffect } from "react";
@@ -21,14 +19,17 @@ import { useEffect } from "react";
 const NewsPage: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
-  const dispatch = useDispatch()
 
+  const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(setStatePageVisit({page:'Berita'}))
   },[dispatch])
   
+  // const { errorCode, detailBerita, listBerita } = props;
+
+  // useDarkNavLinks();
+
   const { errorCode, detailBerita,listBerita } = props;
-  useDarkNavLinks();
   if (errorCode || !detailBerita) {
     return (
       <Error
@@ -81,8 +82,8 @@ const NewsPage: NextPage<
           {listBerita.map((article, i)  => (
             
               <>
-              <Link key={i}   href={`/berita/${article.id}`} passHref>
-               <article className="flex    w-[100%] mx-auto mt-3 h-fit cursor-pointer ">
+              <Link key={i} href={`/berita/${article.id}`} passHref>
+               <article className="flex w-[100%] mx-auto mt-3 h-fit cursor-pointer ">
           <img className="h-[65px] w-[65px] md:h-[120px] object-fit md:w-[120px] lg:w-[65px] lg:h-[65px]  bg-slate-100 rounded-[10px] mr-3 " src={`${API_URL}${article.cover.url}`} alt="" />
           <h2 className="text-[0.9rem] sm:text-[1.1rem]  md:text-[1.65em] lg:text-[14px] mt-1">{article.judul}</h2>
           </article>
@@ -125,7 +126,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideData, URLParams> =
 
     const errorCode = res.ok ? false : res.status;
     const detailBerita = res.status === 404 ? null : await res.json();
-    console.log(beritaList);
     return {
       props: {
         errorCode,
