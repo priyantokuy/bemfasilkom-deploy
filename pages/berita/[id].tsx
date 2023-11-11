@@ -46,7 +46,7 @@ const NewsPage: NextPage<
           <div className="w-full h-full flex flex-col lg:flex-row mt-3">
             <section className="lg:w-[70%]">
               <section className="flex flex-col items-center mb-15 lg:mb-0">
-                <button className="w-[106px] h-[34px] rounded-[10px] bg-[#F2DECE] text-left mt-10 text-center flex items-center justify-center text-[#FA6D01]">
+                <button className="w-[106px] h-[34px] rounded-[10px] bg-[#F2DECE] mt-10 text-center flex items-center justify-center text-[#FA6D01]">
                   <p>{detailBerita.category.category}</p>
                 </button>
                 <h1 className="font-bold text-2.8125em mb-10 mt-15 mx-12 text-center lg:text-32px lg:mx-0">{detailBerita.judul}</h1>

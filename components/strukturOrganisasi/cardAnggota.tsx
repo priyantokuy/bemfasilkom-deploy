@@ -28,7 +28,7 @@ export default function cardAnggota({nama,jabatan,jurusan,linkedin,foto,angkatan
     <article className='card hover:translate-y-[-10px] transition-all overflow-hidden flex flex-col gap-7 lg:gap-6 rounded-md w-fit lg:h-[30%] lg:w-[250px] border-2 bg-pastel pb-4 box-border drop-shadow'>
         <div className='w-full h-[40%] flex flex-col flex-wrap gap-0 items-center'>
             <figure className='w-full h-full'>
-                <Image className='object-cover rounded-t-xl' src={`${API_URL}${foto}`} width={400} height={400} alt='Card Image'/>
+                <img className='object-cover rounded-t-xl' src={`${API_URL}${foto}`} style={{width:'400px',height:'400px'}} alt='Card Image'/>
             </figure>
             <figcaption className='text-typedBlue text-center lg:text-sm'>{jabatan}</figcaption>
         </div>
