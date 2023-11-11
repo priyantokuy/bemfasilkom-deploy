@@ -51,7 +51,7 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                   return (
                       <a key={idx} href={Events.direct_link} target='_blank' rel="noreferrer" className='group card hover:translate-y-[-10px] transition-all overflow-hidden cursor-pointer bg-gradient-cust-orange2 hover:bg-none rounded-md border-2 bg-pastel pb-4 box-border drop-shadow p-[.1rem] w-fit min-[550px]:w-[80%] sm:max-w-none sm:w-[45%] lg:w-fit'>
                         <article className='w-fit lg:w-[20rem] flex flex-col flex-wrap lg:justify-center '>
-                          <Image className='rounded-t-xl object-cover' width={300} height={180} src={API_URL + Events.event_image.url} alt="Events" />
+                          <img className='rounded-t-xl object-cover' width={300} height={180} src={Events.event_image ? API_URL + Events.event_image.url : 'placeholder_image_url'} alt="Events" />
                           <section className='px-2 py-2 flex flex-col gap-2'>
                             <h3 className='text-[1.2em] text-typedBlue font-bold text-center'>{Events.name}</h3>
                             <div className="">
