@@ -25,10 +25,10 @@ export default function cardAnggota({nama,jabatan,jurusan,linkedin,foto,angkatan
         return fixedName;
       }
   return (
-    <article className='card hover:translate-y-[-10px] transition-all overflow-hidden flex flex-col gap-7 lg:gap-6 rounded-md w-fit lg:h-[30%] border-2 bg-pastel pb-4 box-border drop-shadow'>
+    <article className='card hover:translate-y-[-10px] transition-all overflow-hidden flex flex-col gap-7 lg:gap-6 rounded-md w-fit lg:h-[30%] lg:w-[250px] border-2 bg-pastel pb-4 box-border drop-shadow'>
         <div className='w-full h-[40%] flex flex-col flex-wrap gap-0 items-center'>
             <figure className='w-full h-full'>
-                <img className='object-cover rounded-t-xl overflow-hidden' src={`${API_URL}${foto}`} style={{width:'400px',height:'250px'}} alt='Card Image'/>
+                <img className='object-cover rounded-t-xl overflow-hidden w-[400px] h-[400px] lg:h-[250px]' src={`${API_URL}${foto}`} alt='Card Image'/>
             </figure>
             <figcaption className='text-typedBlue text-center lg:text-sm'>{jabatan}</figcaption>
         </div>

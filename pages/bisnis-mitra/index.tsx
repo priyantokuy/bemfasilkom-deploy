@@ -330,7 +330,7 @@ InferGetServerSidePropsType<typeof getServerSideProps>
 																			<div className="inline-flex items-center justify-center rounded-full mb-6">
 																				{portofolio.gambar?(
 																				<img src={`${API_URL}${portofolio.gambar.url}`}
-																					alt={portofolio.judul_project} width={portofolio.gambar.width} height={portofolio.gambar.height} style={{width:'${portofolio.gambar.width}px',height:'${portofolio.gambar.height}px'}} />
+																					alt={portofolio.judul_project} style={{width:'${portofolio.gambar.width}px',height:'${portofolio.gambar.height}px'}} />
 																					):(
 																						<p>There is no picture</p>
 																					)}
@@ -382,7 +382,7 @@ InferGetServerSidePropsType<typeof getServerSideProps>
 							<figure className='flex h-[30%] justify-center items-center gap-3 w-full'>
 								<div className=' w-[30%] flex justify-center'>
 									{testimoni.gambar ? (
-									<Image className='rounded-full overflow-hidden' src={`${API_URL}${testimoni.gambar.url}`} width={60} height={60} alt='Avatar'/>
+									<img className='rounded-full overflow-hidden w-[60px] h-[60px]' src={`${API_URL}${testimoni.gambar.url}`} alt='Avatar'/>
 									):(
 										<p>There is no pictures</p>
 									)}
