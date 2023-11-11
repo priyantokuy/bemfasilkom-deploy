@@ -4,6 +4,7 @@ import {
   NextPage,
 } from "next";
 import { Berita, DetailBerita } from "../../constants/types";
+import styles from "../../styles/NewsDetail.module.scss";
 import Error from "next/error";
 import ReactMarkdown from "react-markdown";
 import { API_URL } from "../../constants";
@@ -42,48 +43,48 @@ const NewsPage: NextPage<
     return (
       <>
       <DocumentHead pageTitle="Berita" />
-      <main className="max-w-960 px-4 md:px-0 pt-20 mx-auto md:max-w-1180">
-          <div className="w-full h-full flex flex-col lg:flex-row mt-3">
-            <section className="lg:w-[70%]">
-              <section className="flex flex-col items-center mb-15 lg:mb-0">
-                <button className="w-[106px] h-[34px] rounded-[10px] bg-[#F2DECE] mt-10 text-center flex items-center justify-center text-[#FA6D01]">
-                  <p>{detailBerita.category.category}</p>
-                </button>
-                <h1 className="font-bold text-2.8125em mb-10 mt-15 mx-12 text-center lg:text-32px lg:mx-0">{detailBerita.judul}</h1>
-                <p className="mb-10 text-[#FA6D01]">
-                  {dateFns.format(new Date(detailBerita.created_at), "d MMMM yyyy")} • By {detailBerita.author.firstname}
-                </p>
-              </section>
+      <main className={styles.main}>
+        <div className="w-fit h-fit flex flex-col  lg:flex-row mt-3">
+       <section className="lg:w-[70%]">
+        <section className={styles["head-news"]}>
+        <button className="w-[106px] h-[34px] rounded-[10px] bg-[#F2DECE] text-left mt-10 text-center flex items-center justify-center text-[#FA6D01]">
+          <p>{detailBerita.category.category}</p>
+        </button>
+          <h1 className={styles["news-title"]}>{detailBerita.judul}</h1>
+          <p className={styles["news-info-date"]}>
+             {dateFns.format(new Date(detailBerita.created_at), "d MMMM yyyy")}{" "}
+             •
+             By {detailBerita.author.firstname}
+          </p>
+        </section>
 
-              <div className="w-full h-400px bg-[#dddddd47] flex justify-center items-center mb-40 overflow-hidden">
-                <img className="h-full object-contain" src={`${API_URL}${detailBerita.cover.url}`} alt="" />
-              </div>
+        <div className={styles["img-container"]}>
+          <img src={`${API_URL}${detailBerita.cover.url}`} alt="" />
+        </div>
 
-              <article className="font-1.5625em text-justify w-80 mx-auto text-[#121212]">
-                <ReactMarkdown transformImageUri={(src, alt, title) => API_URL + src}>
-                  {detailBerita.konten}
-                </ReactMarkdown>
-              </article>
-            </section>
+        <article className={styles["news-content"]}>
+          <ReactMarkdown transformImageUri={(src, alt, title) => API_URL + src}>
+            {detailBerita.konten}
+          </ReactMarkdown>
+        </article>
+        </section>
 
-            <section className="mt-10 sm:mt-4 lg:mt-9 w-80% mx-auto lg:w-[30%] lg:p-2">
-              <h1 className="font-bold text-19px md:text-24px ml-auto md:mb-4 lg:mb-0">Artikel Terbaru</h1>
-              <div className="w-full h-[250px] lg:h-fit overflow-y-scroll lg:overflow-y-visible flex flex-col">
-                {listBerita.map((article, i) => (
-                  <Link key={i} href={`/berita/${article.id}`} passHref>
-                    <article className="flex w-full mx-auto mt-3 h-fit cursor-pointer">
-                      <img
-                        className="h-65px w-65px md:h-[120px] md:w-[120px] lg:w-65px lg:h-65px bg-slate-100 rounded-[10px] mr-3"
-                        src={`${API_URL}${article.cover.url}`}
-                        alt=""
-                      />
-                      <h2 className="text-[0.9rem] sm:text-[1.1rem] md:text-[1.65em] lg:text-14px mt-1">{article.judul}</h2>
-                    </article>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          </div>
+        <section className="  mt-10  sm:mt-[4em] lg:mt-9 w-[80%]  mx-auto lg:w-[30%] lg:p-2">
+         <h1 className="font-[700] text-[19px] md:text-[24px] ml-auto md:mb-4 lg:mb-0">Artikel Terbaru</h1>
+         <div className="w-full h-[250px] lg:h-fit overflow-y-scroll lg:overflow-y-visible flex flex-col"> 
+          {listBerita.map((article, i)  => (
+            <>
+              <Link key={i}   href={`/berita/${article.id}`} passHref>
+                <article className="flex w-[100%] mx-auto mt-3 h-fit cursor-pointer ">
+                <img className="h-[65px] w-[65px] md:h-[120px] object-fit md:w-[120px] lg:w-[65px] lg:h-[65px]  bg-slate-100 rounded-[10px] mr-3 " src={`${API_URL}${article.cover.url}`} alt="" />
+                <h2 className="text-[0.9rem] sm:text-[1.1rem]  md:text-[1.65em] lg:text-[14px] mt-1">{article.judul}</h2>
+                </article>
+              </Link>
+            </>
+          ))}
+         </div>
+        </section>
+        </div>
       </main>
     </>
   );
