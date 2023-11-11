@@ -31,7 +31,7 @@ export default function Index(props: AboutInterface) {
             </article>
             <aside className=' relative mt-[8rem] lg:mt-0 flex flex-col gap-[3rem]  w-full h-fit lg:h- lg:w-[40%]'>
                 <div className='w-[15rem] h-[15rem] sm:w-[20rem] sm:h-[20rem] m-auto lg:w-[22rem] lg:h-[22rem] lg:relative flex justify-center'>
-                    <img src={`${API_URL}${logo}`} className='w-[300px] h-[600px]' alt='Kabinet Aerial' />
+                    <img src={`${API_URL}${logo}`} className='w-[300px]' alt='Kabinet Aerial' />
                 </div>
                 <div className='w-full flex flex-col items-center'>
                     <h3 className='text-lg font-bold submenu w-fit'>BEM FASILKOM UPNVJT</h3>
