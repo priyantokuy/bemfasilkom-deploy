@@ -329,8 +329,8 @@ InferGetServerSidePropsType<typeof getServerSideProps>
 																		<div className="items-center text-center">
 																			<div className="inline-flex items-center justify-center rounded-full mb-6">
 																				{portofolio.gambar?(
-																				<Image src={`${API_URL}${portofolio.gambar.url}`}
-																					alt={portofolio.judul_project} width={portofolio.gambar.width} height={portofolio.gambar.height} />
+																				<img src={`${API_URL}${portofolio.gambar.url}`}
+																					alt={portofolio.judul_project} width={portofolio.gambar.width} height={portofolio.gambar.height} style={{width:'${portofolio.gambar.width}px',height:'${portofolio.gambar.height}px'}} />
 																					):(
 																						<p>There is no picture</p>
 																					)}
