@@ -74,14 +74,14 @@ export default function Index({content,BPH}:{content:string,BPH:any}) {
         <section ref={boxRef} data-scroll-section className='flex h-full lg:max-w-[283px] lg:w-[30%]  '>
             <section className='mt-8 w-full lg:mt-0 lg:w-fit h-full flex lg:flex-col lg:items-center justify-between'>
                 <figure className='w-[40%] h-[40%] lg:w-fit lg:h-fit flex flex-col items-center lg:mb-10'>
-                    <img className='rounded-full overflow-hidden bg-cover object-cover w-32 md:w-48' src={ketuaUmum.foto ? API_URL + ketuaUmum.foto.url : 'placeholder_image_url'} alt='Ketua' />
+                    <img className='rounded-full overflow-hidden bg-cover object-cover w-32 h-32 md:h-48 md:w-48' src={ketuaUmum.foto ? API_URL + ketuaUmum.foto.url : 'placeholder_image_url'} alt='Ketua' />
                     <figcaption className='text-center mt-2'>
                         <p className='text-xs min-[357px]:text-sm  lg:text-xl'>{ketuaUmum.nama}</p>
                         <p className='text-xs lg:text-xl font-bold text-typedBlue'>{ketuaUmum.jabatan.nama}</p>
                     </figcaption>
                 </figure>
                 <figure className='w-[40%] h-[40%] lg:w-fit lg:h-fit flex flex-col items-center'>
-                    <img className='rounded-full overflow-hidden bg-cover mb-1 object-cover w-32 md:w-48' src={wakilKetua.foto ? API_URL + wakilKetua.foto.url : 'placeholder_image_url'} alt='Wakil'/>
+                    <img className='rounded-full overflow-hidden bg-cover mb-1 object-cover w-32 h-32 md:h-48 md:w-48' src={wakilKetua.foto ? API_URL + wakilKetua.foto.url : 'placeholder_image_url'} alt='Wakil'/>
                     <figcaption className='text-center mt-2'>
                         <p className='text-xs min-[357px]:text-sm lg:text-xl'>{wakilKetua.nama}</p>
                         <p className='text-xs lg:text-xl font-bold text-typedBlue'>{wakilKetua.jabatan.nama}</p>
