@@ -70,7 +70,7 @@ const NewsPage: NextPage<
         </section>
 
         <section className="  mt-10  sm:mt-[4em] lg:mt-9 w-[80%]  mx-auto lg:w-[30%] lg:p-2">
-         <h1 className="font-[700] text-[19px] md:text-[24px] ml-auto md:mb-4 lg:mb-0">Artikel Terbaru</h1>
+         <h1 className="font-[700] text-[19px] md:text-[24px] ml-auto md:mb-4 lg:mb-0">Artikel Lainnya</h1>
          <div className="w-full h-[250px] lg:h-fit overflow-y-scroll lg:overflow-y-visible flex flex-col"> 
           {listBerita.map((article, i)  => (
             <>
