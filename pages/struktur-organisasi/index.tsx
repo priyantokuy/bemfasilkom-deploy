@@ -181,7 +181,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                     </div>
                 </section>
             </section>
-            <section className='flex flex-col gap-5 px-3 sm:px-10'>
+            <section className='flex flex-col gap-5 px-3 sm:px-10 mt-5'>
                 <div className='flex flex-col gap-1'>
                     <h5 className='text-lg leading-none sm:text-xl md:text-2xl lg:text-3xl font-bold submenu w-fit pr-2 border-r-2 border-tangerine h-fit'>Fungsionaris</h5>
                     <h6 className='text-xs sm:text-sm md:text-base md:leading-3 lg:text-2xl font-black text-outline'>BEM FASILKOM 2023</h6>
