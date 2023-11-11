@@ -90,4 +90,4 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
     };
   };
 
-export default Index
+export default Index;
