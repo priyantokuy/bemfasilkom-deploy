@@ -22,21 +22,13 @@ export default NextAuth({
 
       return false;
     },
-    redirect(url: string, baseUrl: string): string {
-      console.log("url:", url);
-      console.log("baseUrl:", baseUrl);
-      if (url.startsWith(baseUrl)) {
-        console.log("Redirecting to:", url);
-        return url;
-      }
-      // Allows relative callback URLs
-      else if (url.startsWith("/")) {
-        const redirectUrl = new URL(url, baseUrl).toString();
-        console.log("Redirecting to:", redirectUrl);
-        return redirectUrl;
-      }
-      console.log("Redirecting to:", baseUrl);
-      return baseUrl;
-    },
+    redirect(url, baseUrl) {
+      const customBaseUrl = "https://bemfailkom-deploy.vercel.app";
+      
+    if (url.startsWith(baseUrl)) return url;
+    // Allows relative callback URLs
+    else if (url.startsWith("/")) return new URL(url, customBaseUrl).toString();
+    return customBaseUrl;
+  },
   },
 });
