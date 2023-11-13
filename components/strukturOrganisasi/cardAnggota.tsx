@@ -30,7 +30,7 @@ export default function cardAnggota({nama,jabatan,jurusan,linkedin,foto,angkatan
             <figure className='w-full h-full'>
                 <img className='object-cover rounded-t-xl overflow-hidden w-[400px] h-[400px] lg:h-[250px]' src={`${API_URL}${foto}`} alt='Card Image'/>
             </figure>
-            <figcaption className='text-typedBlue text-center lg:text-sm'>{jabatan}</figcaption>
+            <figcaption className='text-typedBlue text-center lg:text-sm pt-2'>{jabatan}</figcaption>
         </div>
         <div className='flex flex-col flex-wrap w-full items-center gap-2'>
             <h4 className='nama flex items-center leading-6 text-base font-bold text-typedBlue text-center mb-4 h-[1rem] px-2'>{nameHandler(nama)}</h4>

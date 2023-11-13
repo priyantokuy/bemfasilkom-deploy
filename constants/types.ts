@@ -119,6 +119,7 @@ export type Event = {
 export type DivisiPengurus = {
   id:string;
   nama: string;
+  long_name: string;
 };
 
 export type JabatanPengurus = {
@@ -176,4 +177,5 @@ export type StrukturOrganisasiPage={
   members:Pengurus[];
   prokers:Proker[];
   tupoksis:Tupoksi[];
+  long_name:string;
 }

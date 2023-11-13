@@ -114,8 +114,6 @@ type ServerSideData = {
 export async function getServerSidePaths() {
   const res = await fetch(`${API_URL}/beritas`);
   const beritas = await res.json()
-  console.log('ini')
-  console.log(beritas)
   const paths = beritas.map((berita: any) => {
     return{
       params:{
@@ -132,7 +130,6 @@ export async function getServerSidePaths() {
 export const getServerSideProps: GetServerSideProps<ServerSideData> =
   async (context) => {
     try {
-      console.log('ini id')
       const res = await fetch(`${API_URL}/beritas/${context.params?.id}`);
       // const [beritaList, beritaCount] = await Promise.all([
       //   await (

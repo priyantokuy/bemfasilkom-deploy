@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "admincpanelbemfasilkomupnjatim.com"],
+    domains: ["localhost", "admincpanel.bemfasilkomupnjatim.com"],
   },
   typescript: {
     ignoreBuildErrors: true,

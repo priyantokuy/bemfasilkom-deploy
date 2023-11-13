@@ -29,7 +29,7 @@ export default function Index({namaKabinet}:{namaKabinet:string}) {
   return (
     <section className=' relative top-[13vh] h-[87vh] box-border flex flex-col-reverse lg:flex-row lg:px-7 pb-10 lg:pb-4'>
         <section className='relative lg:left-4 z-[4] w-full h-fit lg:w-[45%] lg:h-full flex flex-col justify-center items-center lg:items-start lg:pb-2'>
-          <div className='absolute -left-24 -top-[13rem] lg:-top-10 opacity-[.5] -rotate-9'>
+          <div className='absolute -left-36 -top-[10rem] lg:-top-[6.5rem] opacity-[.5] -rotate-[10deg]'>
               <Infinite />
           </div>
           <div className={`flex flex-col items-center lg:items-start ${styles.section_desc}`}>

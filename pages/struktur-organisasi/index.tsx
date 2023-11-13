@@ -84,6 +84,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
             members: [],
             prokers: prokersByDivisi[item.divisi.id] || [], // Assign prokers based on divisi ID
             tupoksis: tupoksisByDivisi[item.divisi.id] || [], // Assign prokers based on divisi ID
+            long_name: item.divisi.long_name
           
            };
         }
@@ -100,8 +101,10 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
             instagram: '',
             divisi: {
                 id: '',
-                nama: ''
+                nama: '',
+                long_name: item.divisi.long_name
             },
+            long_name: item.divisi.long_name,
             foto: {
               height: 0,
               width: 0,
@@ -135,7 +138,6 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
     const dispatch = useDispatch()
     const refStruktur = useRef<HTMLInputElement>(null)
     const refImage = useRef<HTMLInputElement>(null)
-    
 
     const tabClicked =()=>{
         gsap.fromTo(refImage.current,{autoAlpha:0,y:200,scale:.5},
@@ -176,14 +178,11 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                 </section>
                 <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap px-3 md:px-7 w-full h-fit border-box '>
                     <img src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
-                    <div className='absolute z-100 -bottom-20 lg:left-3'>
-                        <Image src={'/vector/infinity.png'} width={150} height={150} alt='infinity'></Image>
-                    </div>
                 </section>
             </section>
-            <section className='flex flex-col gap-5 px-3 sm:px-10 mt-5'>
+            <section className='flex flex-col gap-5 px-3 sm:px-10'>
                 <div className='flex flex-col gap-1'>
-                    <h5 className='text-lg leading-none sm:text-xl md:text-2xl lg:text-3xl font-bold submenu w-fit pr-2 border-r-2 border-tangerine h-fit'>Fungsionaris</h5>
+                    <h5 className='mt-20 text-lg leading-none sm:text-xl md:text-2xl lg:text-3xl font-bold submenu w-fit pr-2 border-r-2 border-tangerine h-fit'>Fungsionaris</h5>
                     <h6 className='text-xs sm:text-sm md:text-base md:leading-3 lg:text-2xl font-black text-outline'>BEM FASILKOM 2023</h6>
                 </div>
                 <div className='w-full h-fit overflow-hidden'>
@@ -200,13 +199,13 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                         </TabList>
 
                         
-                        <div className='flex flex-col items-center bg-[#EFEFEF] w-full h-fit px-3 py-10 pb-[7rem]'>
+                        <div className='flex flex-col items-center bg-[#EFEFEF] w-full h-fit px-5 py-10 pb-[7rem]'>
                         {data.pengurus.map((p ,i)=>{
                             return(
 
                         <TabPanel key={i}>
-                                <h4 className='text-2xl text-center font-bold text-typedBlue mb-10'>{p.divisi}</h4>
-                                <div ref={refImage} className='flex flex-col  min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
+                                <h4 className='text-2xl text-center font-bold text-typedBlue mb-10'>{p.long_name}</h4>
+                                <div ref={refImage} className='flex gap-8 flex-col flex-wrap min-[730px]:flex-row lg:h-[10%] lg:flex-row gap-4 w-full justify-center items-center'>
                                                                     {p.members.map(m=>{return(
                                     <Card key={m.id} nama={m.nama}
                                     angkatan={m.angkatan} 
@@ -220,14 +219,16 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                                 </div>
                             
                                 <div className='w-full h-fit flex flex-col lg:mt-10 lg:flex-row'>
-                                {p.tupoksis.length?    
+                                {p.tupoksis.length?   
                                     <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
                                         <div className='w-full h-fit flex flex-col items-center gap-7'>
                                             <h6 className='text-2xl text-typedBlue font-bold'>Tupoksi</h6>
                                             <div className='px-5'>
                                                 <ul className='list-disc'>
                                                     {p.tupoksis.map((t,i)=>
-                                                    <li key={i} className='lg:text-sm'>{t.Tupoksi}</li>
+                                                    <>
+                                                      <li key={i} className='lg:text-sm text-justify'>{t.Tupoksi}</li>
+                                                    </>
                                                     )}
                                                 </ul>
                                             </div>
@@ -237,7 +238,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                                     null
                                 }
                                 {p.prokers.length ? 
-                                    <div className='flex flex-col w-full h-fit items-center justify-center mt-10'>
+                                    <div className='flex flex-col w-[80%] h-fit items-center justify-center mt-10'>
                                         <div className='w-full h-fit flex flex-col items-center gap-7'>
                                             <h6 className='text-2xl text-typedBlue font-bold'>Proker</h6>
                                             <div className='h-fit w-full flex justify-around gap-3 flex-wrap box-border'>
@@ -292,13 +293,9 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> = async (
       const pengurus = await (await fetch(`${API_URL}/penguruses`)).json();
       const kategoriProkerResponse = await (await fetch(`${API_URL}/kategori-penguruses`)).json();
   
-      const prokers = kategoriProkerResponse?.prokers?.length
-        ? kategoriProkerResponse.prokers[0]
-        : [];
+      const prokers = kategoriProkerResponse.filter((p:any)=>p.prokers.length ).map((m:any)=>m.prokers)[0];
   
-      const tupoksis = kategoriProkerResponse?.tupoksis?.length
-        ? kategoriProkerResponse.tupoksis[0]
-        : [];
+      const tupoksis = kategoriProkerResponse?.filter((t:any)=>t.tupoksis.length ).map((m:any)=>m.tupoksis)[0];
   
       return {
         props: {
@@ -309,6 +306,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> = async (
           prokers: prokers || [],
           tupoksis: tupoksis || [],
         },
+        
       };
     } catch (error) {
       console.error('Error fetching data:', error);
