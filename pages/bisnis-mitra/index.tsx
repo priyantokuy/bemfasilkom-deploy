@@ -165,8 +165,8 @@ InferGetServerSidePropsType<typeof getServerSideProps>
               </div>
               <div className="w-full lg:w-1/2 text-center lg:justify-end justify-center flex pr-0">
                 <img id="hero" className='w-[20em] h-[20em] lg:w-fit lg:h-fit'
-                  src="assets/image/il_jet.svg"
-                  alt="" />
+                  src="assets/image/ic_bismit.png"
+                  alt="Boost Your Business" />
               </div>
             </div>
           </div>
