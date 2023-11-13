@@ -103,7 +103,7 @@ const AduanDanAspirasi: NextPage<
             className={styles.sign_in_with_google_btn}
             onClick={() =>
               signIn("google", {
-                callbackUrl: `/aduan-dan-aspirasi`,
+                callbackUrl: `https://bemfasilkom-deploy.vercel.app/aduan-dan-aspirasi`,
               })
             }
           >

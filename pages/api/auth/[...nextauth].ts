@@ -22,8 +22,8 @@ export default NextAuth({
 
       return false;
     },
-    redirect(url, baseUrl) {
-      const customBaseUrl = process.env.NEXT_URL || "http://localhost:3000";
+    async redirect(url, baseUrl) {
+      const customBaseUrl = process.env.NEXT_URL || "https://bemfasilkom-deploy.vercel.app";
       
     if (url.startsWith(baseUrl)) return url;
     // Allows relative callback URLs
