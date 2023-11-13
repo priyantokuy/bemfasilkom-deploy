@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { Awaitable } from "next-auth/internals/utils";
 import Providers from "next-auth/providers";
 
 export default NextAuth({
@@ -23,17 +22,18 @@ export default NextAuth({
 
       return false;
     },
-    redirect(url: string, baseUrl: string): Awaitable<string> {
-      const customBaseUrl = process.env.NEXTAUTH_URL;
+    redirect(url, baseUrl) {
+    
+    const customBaseUrl = process.env.NEXTAUTH_URL;
       
-      if (url.startsWith(`${customBaseUrl}/`)) {
+      if (url.startsWith(`${baseUrl}/`)) {
         return url;
       } else if (url.startsWith("/")) {
-        return `${customBaseUrl}${url}`;
+        return new URL(url, customBaseUrl).toString();
       }
-    
+      
       // Handle the case where `url` is not a valid URL
       return Promise.reject(new Error("Invalid URL"));
-    }
+    },
   },
 });
