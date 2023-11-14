@@ -41,7 +41,7 @@ const Index : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
   return (
     <>
       <DocumentHead pageTitle="Homepage" />
-      <section className='w-screen box-border min-w-[360px]'>
+      <section className='w-screen box-border'>
           <section className='px-10'> 
               <Jumbotron namaKabinet={namaKabinet} />
               <Sambutan content={sambutan} BPH={BPH}/>

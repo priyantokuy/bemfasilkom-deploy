@@ -23,7 +23,7 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
     const refSection = useRef<HTMLInputElement>(null)
     const dispatch = useDispatch()
     const { listEvents, EventsCount } = props;
-    const paginationStart = useRef(listEvents.length);
+    const [paginationStart,setPaginationStart] = useState(listEvents.length);
     const [EventsList, setEventsList] = useState(listEvents);
     const [isFetchingNewData, setIsFetchingNewData] = useState(false);
 
@@ -42,7 +42,7 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
     return (
       <>
         <DocumentHead pageTitle="Event" />
-        <div className='w-screen h-fit px-20 mt-[16vh]'>
+        <div className='w-screen h-fit px-4 lg:px-10 mt-[16vh]'>
           <h3 className="text-center m-auto mb-10 font-bold text-typedBlue text-3xl submenu w-fit after:-bottom-2 after:-right-2 after:w-[100px]">Event</h3>
           {EventsList.length > 0 ? (
             <>
@@ -88,13 +88,14 @@ const Events: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                   onClick={() => {
                     setIsFetchingNewData(true);
                     fetch(
-                      `${API_URL}/projects?_sort=created_at:DESC&_start=${paginationStart.current}&_limit=3`
+                      `${API_URL}/projects?_sort=created_at:DESC&_start=${paginationStart}&_limit=3`
                     ).then(async (res) => {
                       res.json().then((newNews) => {
                         setEventsList((prevState) => {
                           return [...prevState, ...newNews];
                         });
                         setIsFetchingNewData(false);
+                        setPaginationStart(paginationStart+ 3);
                       });
                     });
                   }}

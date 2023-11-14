@@ -42,15 +42,15 @@ const Berita: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
     return (
       <>
         <DocumentHead pageTitle="Fasilkom News" />
-        <div className={styles.container}>
-          <h1 className={styles.textberita}>Fasilkom News</h1>
+        <div className={' mt-[5rem] w-full h-fit lg:h-fit box-border flex flex-col items-center'}>
+          <h1 className={`${styles.textberita} my-5`}>Fasilkom News</h1>
           {beritaList.length > 0 ? (
             <>
               <div ref={refSection} className={styles.berita_list_container}>
                 {beritaList.map((berita, idx) => {
                   return (
                     <Link  key={idx} href={`/berita/${berita.id}`} passHref>
-                      <a  className={styles.news_card}>
+                      <a  className={`${styles.news_card} m-2 lg:m-[20px]`}>
                         <div className={styles.news_thumbnail}>
                           <img src={berita.cover ? API_URL + berita.cover.url : 'placeholder_image_url'} alt="berita" />
                         </div>

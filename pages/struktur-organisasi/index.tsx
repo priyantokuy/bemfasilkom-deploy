@@ -176,7 +176,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                         <img src={`${API_URL}${data.logo}`} className='w-[80px] h-[80px] lg:w-[200px] lg:h-[200px]' alt='Kabinet Aerial' />
                     </div>
                 </section>
-                <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap -mt-10 md:mt-0 px-3 md:px-7 w-full h-fit border-box z-10'>
+                <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap mt-0 md:mt-5 px-3 md:px-7 w-full h-fit border-box z-10'>
                     <img src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
                 </section>
             </section>

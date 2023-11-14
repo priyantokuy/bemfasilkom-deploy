@@ -160,7 +160,7 @@ export const Navbar = () => {
             <section className={`flex flex-col lg:flex-row justify-around  ${pageVisit==='Bisnis-Mitra'? 'lg:px-16 lg:items-center' : null } w-fit max-h-[80%] lg:max-h-none lg:w-[70%] h-[60%] lg:h-fit `}>
               {pageVisit != 'Bisnis-Mitra'? 
                 navLinks.map((menu:any,i:number) => menu.links? (
-                  <section key={`menu-${i}`} className="group relative z-[100] cursor-pointer box-border h-fit" onClick={() => {
+                  <section key={`menu-${i}`} className="group relative cursor-pointer box-border h-fit" onClick={() => {
                     toggleSubmenu(i)
                     setArrowMenuClicked((prevArrowMenuClicked) => {
                       const updatedArrowMenuClicked = [...prevArrowMenuClicked];
@@ -176,7 +176,7 @@ export const Navbar = () => {
                     {menu.links.map((subMenu:NavLink,subIndex:number)=>(
                       <li key={`submenu-${subIndex}`} className="lg:invisible lg:group-hover:visible w-full flex flex-col gap-3 lg:gap-0 ">
                         <Link href={subMenu.link}>
-                          <a onClick={()=>handleClickedNavbar(menu.text)} className={`px-[.5rem] py-1 block lg:text-center h-full hover:bg-tangerine hover:text-typedBlue text-base lg:text-sm font-medium `}>{subMenu.text}</a>
+                          <a onClick={()=>handleClickedNavbar(menu.text)} className={`px-[.5rem] py-3 md:py-2 block lg:text-center h-full hover:bg-tangerine hover:text-typedBlue text-base lg:text-sm font-medium `}>{subMenu.text}</a>
                         </Link>
                       </li >
                         ))}

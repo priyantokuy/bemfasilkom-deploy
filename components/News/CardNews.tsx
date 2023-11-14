@@ -12,7 +12,7 @@ import Link from 'next/link'
 export default function CardNews({key,berita}:{key: number,berita:DetailBerita}) {
   return (
     <Link key={key} href={`/berita/${berita.id}`} passHref>
-      <a  className={styles.news_card}>
+      <a  className={`${styles.news_card} lg:m-[20px]`}>
         <div className={styles.news_thumbnail}>
           <img src={berita.cover ? API_URL + berita.cover.url : 'placeholder_image_url'} alt="berita" />
         </div>
@@ -30,7 +30,7 @@ export default function CardNews({key,berita}:{key: number,berita:DetailBerita})
           {berita.author.firstname}
         </p>
         </div>
-        <h3 className={styles.news_title}>{berita.judul}</h3>
+        <h3 className={`${styles.news_title} text-sm min-[380px]:text-[1.1em]`}>{berita.judul}</h3>
 
         <p className={styles.news_desc}>
           {berita.pratinjau.length > 100
