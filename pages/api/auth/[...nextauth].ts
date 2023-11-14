@@ -23,7 +23,7 @@ export default NextAuth({
       return false;
     },
     async redirect(url, baseUrl) {
-      const customBaseUrl = process.env.NEXT_URL || "https://bemfasilkom-deploy.vercel.app";
+      const customBaseUrl = process.env.NEXT_URL || "https://bemfasilkomupnjatim.com";
       
     if (url.startsWith(baseUrl)) return url;
     // Allows relative callback URLs
