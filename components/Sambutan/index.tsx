@@ -90,14 +90,14 @@ export default function Index({content,BPH}:{content:string,BPH:any}) {
             </section>
         </section>
 
-        <section ref={boxRef1} className='h-full w-full lg:max-w-[703px] lg:w-fit lg:h-fit box-border flex'>
+        <section ref={boxRef1} className='h-full w-full lg:max-w-[703px] lg:w-fit lg:h-fit box-border flex lg:me-20'>
             <section className='h-full w-fit flex flex-col flex-wrap  lg:flex-nowrap gap-6 lg:gap-12 box-border text-justify lg:px-6 '>
                 <div className='flex flex-col flex-wrap text-center lg:text-start'>
                     <h2 className='text-4xl lg:text-9xl tracking-[.9rem] font-semibold drop-shadow-cust-1 text-white  '>SAMBUTAN</h2>
                     <span className='text-lg lg:text-2xl tracking-[.23rem] font-semibold text-typedBlue'>Ketua & Wakil Badan Eksekutif Mahasiswa</span>
                 </div>
                 <div className='flex flex-col flex-wrap'>
-                    <p className='text-xs lg:text-sm leading-5' dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
+                    <p className='text-xs lg:text-base leading-5' dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
                 </div>
             </section>
         </section>
