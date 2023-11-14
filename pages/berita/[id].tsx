@@ -139,7 +139,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
       //   ).json(),
       //   await (await fetch(`${API_URL}/beritas/count`)).json(),
       // ]);
-      const beritaList = await (await fetch(`${API_URL}/beritas`)).json();
+      const beritaList = await (await fetch(`${API_URL}/beritas?_sort=news_date:DESC`)).json();
 
       const errorCode = res.ok ? false : res.status;
       const detailBerita = res.status === 404 ? null : await res.json();
