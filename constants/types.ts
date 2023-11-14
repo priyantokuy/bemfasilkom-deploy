@@ -103,6 +103,7 @@ export type DetailBerita = {
   pratinjau: string;
   created_at: string;
   category:string | any;
+  news_date: string;
 };
 export type Event = {
   id: number;

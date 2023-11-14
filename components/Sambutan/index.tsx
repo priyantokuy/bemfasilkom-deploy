@@ -97,11 +97,7 @@ export default function Index({content,BPH}:{content:string,BPH:any}) {
                     <span className='text-lg lg:text-2xl tracking-[.23rem] font-semibold text-typedBlue'>Ketua & Wakil Badan Eksekutif Mahasiswa</span>
                 </div>
                 <div className='flex flex-col flex-wrap'>
-                    <p className='text-xs lg:text-sm leading-5'>
-                      {content.length > 1500
-                                ? content.slice(0, 1500) + "..."
-                                : content}
-                      </p>
+                    <p className='text-xs lg:text-sm leading-5' dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
                 </div>
             </section>
         </section>

@@ -59,7 +59,7 @@ const Berita: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                         <p className={styles.news_date}>
                           <img className="inline w-[24px] h-[24px] mr-1 m-auto" width={24} height={24} alt="date" src="icons/date.svg"/>
                           {dateFns.format(
-                            new Date(berita.created_at),
+                            new Date(berita.news_date),
                             "d MMMM yyyy"
                           )}
                         </p>
@@ -71,8 +71,8 @@ const Berita: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                         <h3 className={styles.news_title}>{berita.judul}</h3>
               
                         <p className={styles.news_desc}>
-                          {berita.pratinjau.length > 200
-                            ? berita.pratinjau.slice(0, 200) + "..."
+                          {berita.pratinjau.length > 100
+                            ? berita.pratinjau.slice(0, 100) + "..."
                             : berita.pratinjau}
                         </p>
                       </a>
@@ -86,7 +86,7 @@ const Berita: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> =
                disabled={isFetchingNewData}
                onClick={() => {
                  setIsFetchingNewData(true);
-                 fetch(`${API_URL}/beritas?_sort=created_at:DESC&_start=${paginationStart.current}&_limit=3`)
+                 fetch(`${API_URL}/beritas?_sort=news_date:ASC&_start=${paginationStart.current}&_limit=3`)
                    .then((res) => {
                      if (!res.ok) {
                        throw new Error('Network response was not ok');
@@ -130,7 +130,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
     const [beritaList, beritaCount] = await Promise.all([
       await (
         await fetch(
-          `${API_URL}/beritas?_sort=created_at:DESC&_start=0&_limit=6`
+          `${API_URL}/beritas?_sort=news_date:DESC&_start=0&_limit=6`
         )
       ).json(),
       await (await fetch(`${API_URL}/beritas/count`)).json(),

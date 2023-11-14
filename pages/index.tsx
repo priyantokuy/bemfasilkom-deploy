@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> =
     const homepageContent = await (await fetch(`${API_URL}/homepage`)).json()
     const kabinet = await (await fetch(`${API_URL}/nama-kabinet`)).json()
     const sambutan = await (await fetch(`${API_URL}/sambutan`)).json()
-    const beritaList = await (await fetch(`${API_URL}/beritas?_sort=created_at:DESC&_start=0&_limit=3`)).json()
+    const beritaList = await (await fetch(`${API_URL}/beritas?_sort=news_date:DESC&_start=0&_limit=3`)).json()
     const pengurus = await (await fetch(`${API_URL}/penguruses`)).json();
 
 

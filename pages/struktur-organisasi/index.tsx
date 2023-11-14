@@ -172,11 +172,11 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                         <h3 className='text-2xl lg:text-3xl font-bold submenu w-fit'>Struktur Organisasi</h3>
                         <h4 className='text-lg lg:text-2xl tracking-wide font-black text-outline'>{data.namaKabinet}</h4>
                     </div>
-                    <div className='flex justify-center h-[20vh] w- sm:h-[30vh] md:h-[7rem] md:relative md:top-10 lg:right-10'>
-                        <img src={`${API_URL}${data.logo}`} width={150} height={150} alt='Kabinet Aerial' />
+                    <div className='flex justify-center h-[20vh] sm:h-[30vh] md:h-[7rem] md:relative md:top-10 lg:right-10'>
+                        <img src={`${API_URL}${data.logo}`} className='w-[80px] h-[80px] lg:w-[200px] lg:h-[200px]' alt='Kabinet Aerial' />
                     </div>
                 </section>
-                <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap px-3 md:px-7 w-full h-fit border-box '>
+                <section ref={refStruktur} className='relative flex justify-start lg:justify-center items-start flex-wrap -mt-10 md:mt-0 px-3 md:px-7 w-full h-fit border-box z-10'>
                     <img src={`${API_URL}${data.strukturOrganisasi}`} width={1000} height={500} alt='Struktur Organisasi' />
                 </section>
             </section>
@@ -224,13 +224,11 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                                         <div className='w-full h-fit flex flex-col items-center gap-7'>
                                             <h6 className='text-2xl text-typedBlue font-bold'>Tupoksi</h6>
                                             <div className='px-5'>
-                                                <ul className='list-disc'>
-                                                    {p.tupoksis.map((t,i)=>
-                                                    <>
-                                                      <li key={i} className='lg:text-sm text-justify'>{t.Tupoksi}</li>
-                                                    </>
-                                                    )}
-                                                </ul>
+                                              <>
+                                                {p.tupoksis.map((t, i) => (
+                                                  <p key={i} className='lg:text-sm text-justify' dangerouslySetInnerHTML={{ __html: t.Tupoksi.replace(/\n/g, '<br />') }} />
+                                                ))}
+                                              </>
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +236,7 @@ const groupedByAnggotaJurusan = (pengurus:Pengurus[], prokers:Prokers[], tupoksi
                                     null
                                 }
                                 {p.prokers.length ? 
-                                    <div className='flex flex-col w-[80%] h-fit items-center justify-center mt-10'>
+                                    <div className='flex flex-col w-full lg:w-[80%] h-fit items-center justify-center mt-10'>
                                         <div className='w-full h-fit flex flex-col items-center gap-7'>
                                             <h6 className='text-2xl text-typedBlue font-bold'>Proker</h6>
                                             <div className='h-fit w-full flex justify-around gap-3 flex-wrap box-border'>
@@ -293,9 +291,12 @@ export const getServerSideProps: GetServerSideProps<ServerSideData> = async (
       const pengurus = await (await fetch(`${API_URL}/penguruses`)).json();
       const kategoriProkerResponse = await (await fetch(`${API_URL}/kategori-penguruses`)).json();
   
-      const prokers = kategoriProkerResponse.filter((p:any)=>p.prokers.length ).map((m:any)=>m.prokers)[0];
-  
-      const tupoksis = kategoriProkerResponse?.filter((t:any)=>t.tupoksis.length ).map((m:any)=>m.tupoksis)[0];
+      const prokers = kategoriProkerResponse
+  .flatMap((category: { prokers: string | any[]; }) => (category.prokers.length ? category.prokers : []));
+
+const tupoksis = kategoriProkerResponse
+  .flatMap((category: { tupoksis: string | any[]; }) => (category.tupoksis.length ? category.tupoksis : []));
+
   
       return {
         props: {

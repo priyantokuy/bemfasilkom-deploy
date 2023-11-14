@@ -21,7 +21,7 @@ export default function CardNews({key,berita}:{key: number,berita:DetailBerita})
         <p className={styles.news_date}>
           <img className="inline w-[24px] h-[24px] mr-1 m-auto" width={24} height={24} alt="date" src="icons/date.svg"/>
           {dateFns.format(
-            new Date(berita.created_at),
+            new Date(berita.news_date),
             "d MMMM yyyy"
           )}
         </p>
@@ -33,8 +33,8 @@ export default function CardNews({key,berita}:{key: number,berita:DetailBerita})
         <h3 className={styles.news_title}>{berita.judul}</h3>
 
         <p className={styles.news_desc}>
-          {berita.pratinjau.length > 200
-            ? berita.pratinjau.slice(0, 200) + "..."
+          {berita.pratinjau.length > 100
+            ? berita.pratinjau.slice(0, 100) + "..."
             : berita.pratinjau}
         </p>
       </a>

@@ -47,12 +47,12 @@ const NewsPage: NextPage<
         <div className="w-fit h-fit flex flex-col  lg:flex-row mt-3">
        <section className="lg:w-[70%]">
         <section className={styles["head-news"]}>
-        <button className="w-[106px] h-[34px] rounded-[10px] bg-[#F2DECE] mt-10 text-center flex items-center justify-center text-[#FA6D01]">
+        <button className="py-2 px-3 rounded-[10px] bg-[#F2DECE] mt-10 text-center flex items-center justify-center text-[#FA6D01]">
           <p>{detailBerita.category.category}</p>
         </button>
           <h1 className={styles["news-title"]}>{detailBerita.judul}</h1>
           <p className={styles["news-info-date"]}>
-             {dateFns.format(new Date(detailBerita.created_at), "d MMMM yyyy")}{" "}
+             {dateFns.format(new Date(detailBerita.news_date), "d MMMM yyyy")}{" "}
              •
              By {detailBerita.author.firstname}
           </p>
@@ -76,7 +76,7 @@ const NewsPage: NextPage<
             <>
               <Link key={i} href={`/berita/${article.id}`} passHref>
                 <article className="flex w-[100%] mx-auto mt-3 h-fit cursor-pointer ">
-                <img className="h-[65px] w-[65px] md:h-[120px] object-fit md:w-[120px] lg:w-[65px] lg:h-[65px]  bg-slate-100 rounded-[10px] mr-3 " src={`${API_URL}${article.cover.url}`} alt="" />
+                <img className="h-[65px] w-[65px] md:h-[120px] md:w-[120px] lg:w-[65px] lg:h-[65px] bg-slate-100 rounded-[10px] mr-3 object-cover" src={`${API_URL}${article.cover.url}`} alt="" />
                 <h2 className="text-[0.9rem] sm:text-[1.1rem]  md:text-[1.65em] lg:text-[14px] mt-1">{article.judul}</h2>
                 </article>
               </Link>
