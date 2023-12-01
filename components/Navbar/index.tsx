@@ -50,8 +50,8 @@ const navLinks: (NavLink | profileLinks)[] = [
         link:'/aduan-dan-aspirasi'
       },
       {
-        text:'Bisnis Mitra',
-        link:'/bisnis-mitra'
+        text:'BisIT Aerial',
+        link:'/bisit'
       }
     ],
   },
@@ -143,7 +143,7 @@ export const Navbar = () => {
                     <div className="text-left flex flex-col justify-center">
                       {pageVisit==='Bisnis-Mitra'?
                       (
-                        <h5 className='text-white font-semibold lg:text-base text-sm tracking-wide'>Bismit Aerial.</h5>
+                        <h5 className='text-white font-semibold lg:text-base text-sm tracking-wide'>BisIT Aerial.</h5>
                       ) :
                       (
                         <>

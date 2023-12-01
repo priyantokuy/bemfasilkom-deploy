@@ -7,6 +7,7 @@ import { Provider as StoreProvider  } from 'react-redux'
 import store from '../store/store'
 import { Provider } from "next-auth/client";
 import { Footer } from "../components/Footer";
+import Head from "next/dist/shared/lib/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

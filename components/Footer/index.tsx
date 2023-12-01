@@ -25,7 +25,7 @@ export const Footer = () => {
               </div>
             </section>
             <section className={`h-[10vh] w-full bg-orange-500 flex items-center justify-center`}>
-              <p className="text-white text-[.7em] sm:text-[.9em] text-center">Copyright © 2023, Bisnis Mitra BEM Fasillkom UPNVJT</p>
+              <p className="text-white text-[.7em] sm:text-[.9em] text-center">Copyright © 2023, BisIT BEM Fasillkom UPNVJT</p>
             </section>
           </section>
         </>

@@ -141,7 +141,7 @@ InferGetServerSidePropsType<typeof getServerSideProps>
   },[])
   return (
     <>
-	  <DocumentHead pageTitle="Bisnis Mitra" />
+	  <DocumentHead pageTitle="BisIT" />
       <section id='hero' className="relative h-[120vh] w-full border-box transition-all duration-500 object-fill bg-[length:100%_100%] bg-hero-pattern">
         <Particles className='particles-js h-full w-full absolute' options={particlesConfig} />
         <div className="header-4-1 absolute top-[20vh] z-100">
